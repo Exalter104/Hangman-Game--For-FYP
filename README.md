@@ -8,14 +8,10 @@ In this system, the users can guess the word. This is the classic hangman game i
 In this system, there are three modes: “Chill Mode”, "Classic Mode" and “God Mode”.  In chill mode, the word difficulty increases as the level increases there is clue available for help and no time limits . If the whole person is hanged then the user will lose the game and over again. But in “Classic Mode”, the user has to only clue is available for complete the levels. and in Pro Mode is no clue and there is a time limit to complete the word  within 60 seconds. Else it will timeout and the user will lose the game.
  
 # MAIN IDEA
-* Request for help
-* Request anonymously so no one can see except your hero
-* Requests will not affect your achievements points or levels
-* Help others to achieve points, tiers and ranks
-* Go higher ranks by achieving higher points
-* Achieve different tags
-* Share your success stories with other so they help others to
-* Share your achievements points, level and tiers on different social platform like Facebook, Instagram, Twitter etc
+* Improving Vocablery
+* Remembering Diffrent words
+
+
 
 ## CONTACT
 muhammadsherazkhan104@gmail.com<br>
