@@ -31,7 +31,7 @@ cmd:flutter run
 
 ```
 ## NOTE
-EHELP is developing by __Muhammad Sheraz__ under the supervision of __Ma'am Nudrat Habib__ and now its under-development phase,  if you want to donate us please contact us :smiley:<br><br>
+Hangman Game  is developing by __Muhammad Sheraz__ under the supervision of __Ma'am Nudrat Habib__ and now its under-development phase,  if you want to donate us please contact us :smiley:<br><br>
 
 ## NOTE
 Project is allowed to use to help developers for better understanding of Flutter.
