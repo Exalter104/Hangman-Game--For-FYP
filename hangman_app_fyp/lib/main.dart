@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'initials Screens/splashscreen.dart';
+import 'package:hangman_app_fyp/initials%20Screens/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());

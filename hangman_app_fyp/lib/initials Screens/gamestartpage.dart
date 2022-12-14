@@ -36,13 +36,13 @@ class _GameStartPageState extends State<GameStartPage> {
                   fontWeight: FontWeight.bold),
             ),
             AvatarGlow(
-              startDelay: const Duration(milliseconds: 1000),
+              startDelay: const Duration(milliseconds: 600),
               glowColor: Colors.white,
               endRadius: 130.0,
-              duration: const Duration(milliseconds: 2000),
+              duration: const Duration(milliseconds: 1500),
               repeat: true,
               showTwoGlows: true,
-              repeatPauseDuration: const Duration(milliseconds: 100),
+              repeatPauseDuration: const Duration(milliseconds: 70),
               child: MaterialButton(
                 onPressed: () {
                   Navigator.push(

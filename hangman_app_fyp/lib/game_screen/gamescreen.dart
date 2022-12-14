@@ -18,6 +18,7 @@ class _GameScreenState extends State<GameScreen> {
   var guessWord = [];
 
   int status = 0;
+  int score = 0;
   List gameImages = [
     "images/0.png",
     "images/1.png",
@@ -27,7 +28,7 @@ class _GameScreenState extends State<GameScreen> {
     "images/5.png",
     "images/6.png",
   ];
-  openDiloge(String title) {
+  openDiloge(var title, score) {
     return showDialog(
         barrierDismissible: false,
         context: context,
@@ -48,6 +49,12 @@ class _GameScreenState extends State<GameScreen> {
                           const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
+                    Text(
+                      score,
+                      style: gameTextStyle(24,
+                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -59,6 +66,7 @@ class _GameScreenState extends State<GameScreen> {
                             Navigator.pop(context);
                             setState(() {
                               status = 0;
+                              score = 0;
                               guessWord.clear();
                               randomWordGenerate =
                                   wordlist[Random().nextInt(wordlist.length)];
@@ -146,7 +154,7 @@ class _GameScreenState extends State<GameScreen> {
       if (guessWord.contains(addAlphas)) {
         displayWord += "$addAlphas ";
       } else {
-        displayWord += "?";
+        displayWord += "-";
       }
     }
     return displayWord;
@@ -156,15 +164,14 @@ class _GameScreenState extends State<GameScreen> {
     if (randomWordGenerate.contains(alphabits)) {
       setState(() {
         guessWord.add(alphabits);
+        score += 10;
       });
     } else if (status != 6) {
       setState(() {
         status += 1;
       });
     } else {
-      openDiloge(
-        "You lose",
-      );
+      openDiloge("You lose", "score :$score");
     }
     bool isWon = true;
     for (var i = 0; i < randomWordGenerate.length; i++) {
@@ -177,11 +184,17 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
     if (isWon) {
-      openDiloge("You Win");
+      openDiloge("You Win", "score :$score");
     }
     if (isWon) {
       setState(() {
-        levels++;
+        if (score >= 70) {
+          levels++;
+        } else if (score >= 100) {
+          levels++;
+        } else if (score >= 140) {
+          levels++;
+        }
       });
     }
     if (levels >= 4) {
@@ -195,12 +208,12 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 19, 19, 19),
             title: Center(
               child: Text(
-                "Hangman Game Fyp",
+                "Hangman Game ",
                 style: gameTextStyle(20, Colors.white, FontWeight.bold),
               ),
             ),
@@ -214,92 +227,116 @@ class _GameScreenState extends State<GameScreen> {
             ]),
         body: SingleChildScrollView(
             physics: const ScrollPhysics(),
-            child: Container(
-                alignment: Alignment.center,
-                child: Column(children: [
+            child: Column(children: [
+              Row(
+                children: [
                   Container(
                     decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 255, 255, 255)),
+                        color: Color.fromARGB(255, 0, 0, 0)),
                     margin: const EdgeInsets.only(top: 30),
                     alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width / 2.5,
+                    width: MediaQuery.of(context).size.width / 4.5,
                     height: 50,
                     child: Text(
-                      "${6 - status} Lives Lift",
-                      style: gameTextStyle(20,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
+                      "Score : $score ",
+                      style: gameTextStyle(
+                          20,
+                          const Color.fromARGB(255, 255, 255, 255),
+                          FontWeight.bold),
                     ),
                   ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Image(
-                      fit: BoxFit.cover,
-                      height: 180,
-                      width: 180,
-                      image: AssetImage(gameImages[status])),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Container(
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: [
-                        Container(
-                            decoration: const BoxDecoration(
-                                color: Color.fromARGB(255, 255, 255, 255)),
-                            margin: const EdgeInsets.only(top: 30),
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width / 1.5,
-                            height: 50,
-                            child: Text(
-                              "levels $levels ",
-                              // "HINT : ANIMAL CATEGORY",
-                              style: gameTextStyle(
-                                  20,
-                                  const Color.fromARGB(255, 0, 0, 0),
-                                  FontWeight.bold),
-                            ))
+                ],
+              ),
+              Container(
+                decoration:
+                    const BoxDecoration(color: Color.fromARGB(255, 0, 0, 0)),
+                margin: const EdgeInsets.only(top: 30),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width / 2.5,
+                height: 50,
+                child: Text(
+                  "${6 - status} Try Lift",
+                  style: gameTextStyle(
+                      20,
+                      const Color.fromARGB(255, 255, 255, 255),
+                      FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Image(
+                  color: Colors.black,
+                  fit: BoxFit.cover,
+                  height: 180,
+                  width: 180,
+                  image: AssetImage(gameImages[status])),
+              const SizedBox(
+                height: 30,
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 255, 255, 255)),
+                      margin: const EdgeInsets.only(top: 30),
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width / 2.1,
+                      height: 50,
+                      child: Text(
+                        "levels $levels  ",
+                        // "HINT : ANIMAL CATEGORY",
+                        style: gameTextStyle(
+                            20,
+                            const Color.fromARGB(255, 0, 0, 0),
+                            FontWeight.bold),
+                      ),
+                    )
 
-                        // Container(
+                    // Container(
 
-                        // )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  Text(
-                    hangmanWord(),
-                    style: gameTextStyle(20, Colors.white, FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  GridView.count(
-                    crossAxisCount: 7,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    childAspectRatio: 1.1,
-                    children: letters.map((alphabits) {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 22),
-                        child: InkWell(
-                          onTap: () {
-                            checkthatAlphs(alphabits);
-                          },
-                          child: Center(
-                            child: Text(
-                              alphabits,
-                              style: gameTextStyle(
-                                  20, Colors.white, FontWeight.bold),
-                            ),
-                          ),
+                    // )
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Text(
+                hangmanWord(),
+                style: gameTextStyle(
+                    23, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              GridView.count(
+                crossAxisCount: 7,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: 1.1,
+                children: letters.map((alphabits) {
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: InkWell(
+                      onTap: () {
+                        checkthatAlphs(alphabits);
+                      },
+                      child: Center(
+                        child: Text(
+                          alphabits,
+                          style: gameTextStyle(
+                              20,
+                              const Color.fromARGB(255, 0, 0, 0),
+                              FontWeight.bold),
                         ),
-                      );
-                    }).toList(),
-                  )
-                ]))));
+                      ),
+                    ),
+                  );
+                }).toList(),
+              )
+            ])));
   }
 }
