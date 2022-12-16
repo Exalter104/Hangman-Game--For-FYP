@@ -13,12 +13,6 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  // String gamelevel=[];
-  String randomWordGenerate = wordlist[Random().nextInt(wordlist.length)];
-  var guessWord = [];
-
-  int status = 0;
-  int score = 0;
   List gameImages = [
     "images/0.png",
     "images/1.png",
@@ -28,125 +22,237 @@ class _GameScreenState extends State<GameScreen> {
     "images/5.png",
     "images/6.png",
   ];
-  openDiloge(var title, score) {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return Dialog(
-            child: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: 180,
-                decoration: const BoxDecoration(
-                  color: Colors.black12,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      title,
-                      style: gameTextStyle(24,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      score,
-                      style: gameTextStyle(24,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            setState(() {
-                              status = 0;
-                              score = 0;
-                              guessWord.clear();
-                              randomWordGenerate =
-                                  wordlist[Random().nextInt(wordlist.length)];
-                            });
-                          },
-                          child: Center(
-                              child: Text(
-                            "Play Again",
-                            style: gameTextStyle(
-                                20, Colors.white, FontWeight.bold),
-                          ))),
-                    )
-                  ],
-                )),
-          );
-        });
-  }
 
-  closeDiloge() {
-    return showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (context) {
-          return Dialog(
-            child: Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: 180,
-                decoration: const BoxDecoration(
-                  color: Colors.black12,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "You Reached to Highest Rank,Good luck to 60%",
-                      style: gameTextStyle(24,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    // Text(
-                    //   "You Win",
-                    //   style: gameTextStyle(20, Colors.white, FontWeight.bold),
-                    //   textAlign: TextAlign.center,
-                    // ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 20),
-                      width: MediaQuery.of(context).size.width / 2,
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            setState(() {
-                              status = 0;
-                              guessWord.clear();
-                              levels = 0;
-                              randomWordGenerate =
-                                  wordlist[Random().nextInt(wordlist.length)];
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const GameStartPage()));
-                            });
-                          },
-                          child: Center(
-                              child: Text(
-                            "Game End",
-                            style: gameTextStyle(
-                                20, Colors.white, FontWeight.bold),
-                          ))),
-                    )
-                  ],
-                )),
-          );
-        });
-  }
-
+  var guessWord = [];
   int levels = 1;
+  // String gamelevel=[];
+  String randomWordGenerate = wordlist[Random().nextInt(wordlist.length)];
+
+  int score = 0;
+  int status = 0;
+  wrongDilog(var title, score) {
+    return showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              backgroundColor: Colors.black,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 280,
+                  decoration: const BoxDecoration(
+                    color: Colors.black12,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "images/ulose.gif",
+                        height: 125.0,
+                        width: 125.0,
+                      ),
+                      Text(
+                        title,
+                        style: gameTextStyle(
+                            24,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        score,
+                        style: gameTextStyle(
+                            24,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 48,
+                        margin: const EdgeInsets.only(top: 20),
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              setState(() {
+                                status = 0;
+                                score = 0;
+                                guessWord.clear();
+                                randomWordGenerate =
+                                    wordlist[Random().nextInt(wordlist.length)];
+                              });
+                            },
+                            child: Center(
+                                child: Text(
+                              "Play Again",
+                              style: gameTextStyle(
+                                  20,
+                                  const Color.fromARGB(255, 0, 0, 0),
+                                  FontWeight.bold),
+                            ))),
+                      ),
+                    ],
+                  )));
+        });
+  }
+
+  openDiloge(
+    var title,
+    score,
+  ) {
+    if (levels <= 3) {
+      return showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              backgroundColor: Colors.black,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 280,
+                  decoration: const BoxDecoration(
+                    color: Colors.black12,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "images/win4.gif",
+                        height: 125.0,
+                        width: 125.0,
+                      ),
+                      Text(
+                        title,
+                        style: gameTextStyle(
+                            24,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        score,
+                        style: gameTextStyle(
+                            24,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 48,
+                        margin: const EdgeInsets.only(top: 20),
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                              setState(() {
+                                status = 0;
+                                score = 0;
+                                guessWord.clear();
+                                randomWordGenerate =
+                                    wordlist[Random().nextInt(wordlist.length)];
+                              });
+                            },
+                            child: Center(
+                                child: Text(
+                              "Play Again",
+                              style: gameTextStyle(
+                                  20,
+                                  const Color.fromARGB(255, 0, 0, 0),
+                                  FontWeight.bold),
+                            ))),
+                      ),
+                    ],
+                  )),
+            );
+          });
+    } else {
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) {
+            return Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              backgroundColor: Colors.black,
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 280,
+                  decoration: const BoxDecoration(
+                    color: Colors.black12,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        "images/gameover.gif",
+                        height: 125.0,
+                        width: 125.0,
+                      ),
+                      Text(
+                        "You Reached to Highest Rank,Good luck to 60%",
+                        style: gameTextStyle(
+                            24,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(top: 20),
+                        width: MediaQuery.of(context).size.width / 2,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              setState(() {
+                                status = 0;
+                                guessWord.clear();
+                                levels = 0;
+                                randomWordGenerate =
+                                    wordlist[Random().nextInt(wordlist.length)];
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const GameStartPage()));
+                              });
+                            },
+                            child: Center(
+                                child: Text(
+                              "Game End",
+                              style: gameTextStyle(
+                                  20, Colors.white, FontWeight.bold),
+                            ))),
+                      )
+                    ],
+                  )),
+            );
+          });
+    }
+  }
+
   hangmanWord() {
     String displayWord = "";
     for (var i = 0; i < randomWordGenerate.length; i++) {
@@ -171,7 +277,10 @@ class _GameScreenState extends State<GameScreen> {
         status += 1;
       });
     } else {
-      openDiloge("You lose", "score :$score");
+      wrongDilog(
+        "You lose",
+        "score :$score",
+      );
     }
     bool isWon = true;
     for (var i = 0; i < randomWordGenerate.length; i++) {
@@ -184,7 +293,10 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
     if (isWon) {
-      openDiloge("You Win", "score :$score");
+      openDiloge(
+        "You Win",
+        "score :$score",
+      );
     }
     if (isWon) {
       setState(() {
@@ -198,8 +310,12 @@ class _GameScreenState extends State<GameScreen> {
       });
     }
     if (levels >= 4) {
-      closeDiloge();
-      // openDiloge("Levels is Finshed\n Good Luck for 60% ");
+      // closeDiloge();
+      // openDiloge(title, score);
+      openDiloge(
+        "Levels is Finshed\n Good Luck for 60% ",
+        score,
+      );
       // Navigator.push(context,
       //     MaterialPageRoute(builder: (context) => const GameStartPage()));
     }
@@ -210,42 +326,57 @@ class _GameScreenState extends State<GameScreen> {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
-            backgroundColor: const Color.fromARGB(255, 19, 19, 19),
-            title: Center(
-              child: Text(
-                "Hangman Game ",
-                style: gameTextStyle(20, Colors.white, FontWeight.bold),
-              ),
+          backgroundColor: const Color.fromARGB(255, 19, 19, 19),
+          title: Center(
+            child: Text(
+              "Hangman Game ",
+              style: gameTextStyle(20, Colors.white, FontWeight.bold),
             ),
-            actions: [
-              IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.volume_up_outlined,
-                    color: Colors.white,
-                  ))
-            ]),
+          ),
+        ),
         body: SingleChildScrollView(
             physics: const ScrollPhysics(),
             child: Column(children: [
-              Row(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 0, 0, 0)),
-                    margin: const EdgeInsets.only(top: 30),
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width / 4.5,
-                    height: 50,
-                    child: Text(
-                      "Score : $score ",
-                      style: gameTextStyle(
-                          20,
-                          const Color.fromARGB(255, 255, 255, 255),
-                          FontWeight.bold),
-                    ),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(40.0),
+                          topRight: Radius.circular(40.0))),
+                  margin: const EdgeInsets.only(top: 30),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width / 4.0,
+                  height: 50,
+                  child: Text(
+                    "Score : $score ",
+                    style: gameTextStyle(
+                        20,
+                        const Color.fromARGB(255, 255, 255, 255),
+                        FontWeight.bold),
                   ),
-                ],
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40.0),
+                          topLeft: Radius.circular(40.0))),
+                  margin: const EdgeInsets.only(top: 30),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width / 4.0,
+                  height: 50,
+                  child: Text(
+                    "Hints ",
+                    style: gameTextStyle(
+                        20,
+                        const Color.fromARGB(255, 255, 255, 255),
+                        FontWeight.bold),
+                  ),
+                ),
+              ]),
+              Row(
+                children: const [],
               ),
               Container(
                 decoration:
@@ -307,7 +438,7 @@ class _GameScreenState extends State<GameScreen> {
               Text(
                 hangmanWord(),
                 style: gameTextStyle(
-                    23, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
+                    35, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
               ),
               const SizedBox(
                 height: 30,
@@ -328,9 +459,10 @@ class _GameScreenState extends State<GameScreen> {
                         child: Text(
                           alphabits,
                           style: gameTextStyle(
-                              20,
-                              const Color.fromARGB(255, 0, 0, 0),
-                              FontWeight.bold),
+                            20,
+                            const Color.fromARGB(255, 0, 0, 0),
+                            FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
