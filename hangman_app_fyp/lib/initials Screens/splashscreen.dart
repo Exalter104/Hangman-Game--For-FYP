@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
+import 'package:page_transition/page_transition.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const GameStartPage())));
+        () => Navigator.of(context).push(PageTransition(
+            child: const GameStartPage(),
+            type: PageTransitionType.rightToLeft,
+            duration: const Duration(milliseconds: 800),
+            reverseDuration: const Duration(milliseconds: 800))));
   }
 
   @override
@@ -43,23 +47,20 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 child: Center(
                   child: AnimatedTextKit(
-                    animatedTexts: [
-                      WavyAnimatedText(
-                        'HANGMAN',
-                        textStyle: GoogleFonts.abel(
-                            color: Colors.white,
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const GameStartPage(),
-                          ));
-                    },
-                  ),
+                      animatedTexts: [
+                        WavyAnimatedText(
+                          'HANGMAN',
+                          textStyle: GoogleFonts.abel(
+                              color: Colors.white,
+                              fontSize: 48,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                      onTap: () => Navigator.of(context).push(PageTransition(
+                          child: const GameStartPage(),
+                          type: PageTransitionType.leftToRight,
+                          duration: const Duration(milliseconds: 800),
+                          reverseDuration: const Duration(milliseconds: 800)))),
                 ),
               ),
             ],

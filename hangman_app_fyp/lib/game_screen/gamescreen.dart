@@ -2,8 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
-
-import '../initials Screens/gamestartpage.dart';
+import 'package:page_transition/page_transition.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
@@ -107,7 +106,7 @@ class _GameScreenState extends State<GameScreen> {
 
   openDiloge(
     var title,
-    score,
+    var score,
   ) {
     if (levels <= 3) {
       return showDialog(
@@ -142,7 +141,7 @@ class _GameScreenState extends State<GameScreen> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        score,
+                        "Score:$score",
                         style: gameTextStyle(
                             24,
                             const Color.fromARGB(255, 255, 255, 255),
@@ -240,11 +239,13 @@ class _GameScreenState extends State<GameScreen> {
                                 levels = 0;
                                 randomWordGenerate =
                                     wordlist[Random().nextInt(wordlist.length)];
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const GameStartPage()));
+
+                                () => Navigator.of(context).push(PageTransition(
+                                    child: const GameScreen(),
+                                    type: PageTransitionType.rightToLeft,
+                                    duration: const Duration(milliseconds: 600),
+                                    reverseDuration:
+                                        const Duration(milliseconds: 600)));
                               });
                             },
                             child: Center(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../game_screen/gamescreen.dart';
 
@@ -44,17 +45,23 @@ class _GameStartPageState extends State<GameStartPage> {
               showTwoGlows: true,
               repeatPauseDuration: const Duration(milliseconds: 70),
               child: MaterialButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const GameScreen()));
-                },
+                onPressed: () => Navigator.of(context).push(PageTransition(
+                    child: const GameScreen(),
+                    type: PageTransitionType.rightToLeft,
+                    duration: const Duration(milliseconds: 800),
+                    reverseDuration: const Duration(milliseconds: 800))),
+                // {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => const GameScreen())
+                //           );
+                // },
                 elevation: 20.0,
                 shape: const CircleBorder(),
                 child: Container(
-                  width: 140.0,
-                  height: 140.0,
+                  width: 130.0,
+                  height: 130.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors.white,
