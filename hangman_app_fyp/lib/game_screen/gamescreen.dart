@@ -12,6 +12,8 @@ class GameScreen extends StatefulWidget {
   State<GameScreen> createState() => _GameScreenState();
 }
 
+//images for words
+
 class _GameScreenState extends State<GameScreen> {
   List gameImages = [
     "images/0.png",
@@ -23,13 +25,8 @@ class _GameScreenState extends State<GameScreen> {
     "images/6.png",
   ];
 
-  var guessWord = [];
-  int levels = 1;
-  // String gamelevel=[];
-  String randomWordGenerate = wordlist[Random().nextInt(wordlist.length)];
+// false word dilogue
 
-  int score = 0;
-  int status = 0;
   wrongDilog(var title, score) {
     return showDialog(
         barrierDismissible: false,
@@ -105,6 +102,8 @@ class _GameScreenState extends State<GameScreen> {
                   )));
         });
   }
+
+// true word dilogue
 
   openDiloge(
     var title,
@@ -185,7 +184,11 @@ class _GameScreenState extends State<GameScreen> {
                   )),
             );
           });
-    } else {
+    }
+
+// 3 level reached
+
+    else {
       showDialog(
           barrierDismissible: false,
           context: context,
@@ -253,78 +256,117 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
+  int levels = 1;
+  var hintsword = [];
+// random word genertor
+
+  String randomWordGenerate = wordlist[Random().nextInt(wordlist.length)];
+
+  int score = 0;
+  int status = 0;
+// adding the words in array list
+  var hintList = [];
+  var guessWord = [];
   hangmanWord() {
-    String displayWord = "";
+    String displayword = "";
     for (var i = 0; i < randomWordGenerate.length; i++) {
-      String addAlphas = randomWordGenerate[i];
-      if (guessWord.contains(addAlphas)) {
-        displayWord += "$addAlphas ";
+      String storedWord = randomWordGenerate[i];
+      if (guessWord.contains(storedWord)) {
+        // print(guessWord);
+        displayword += storedWord;
       } else {
-        displayWord += "-";
+        displayword += "__ ";
       }
     }
-    return displayWord;
+    return displayword;
+
+    // String displayWord = "";
+    // for (var i = 0; i < randomWordGenerate.length; i++) {
+    //   String addAlphas = randomWordGenerate[i];
+    //   // var hintword = randomWordGenerate[i];
+
+    //   if (guessWord.contains(addAlphas)) {
+    //     displayWord += "$addAlphas ";
+    //     print("displayword : $displayWord");
+    //   } else {
+    //     displayWord += "-";
+    //   }
+    // }
+
+    // return displayWord;
   }
 
-  checkthatAlphs(alphabits) {
-    if (randomWordGenerate.contains(alphabits)) {
+// display words
+
+  checkKeyPress(pressword) {
+    if (randomWordGenerate.contains(pressword)) {
       setState(() {
-        guessWord.add(alphabits);
-        score += 10;
-      });
-    } else if (status != 6) {
-      setState(() {
-        status += 1;
-      });
-    } else {
-      wrongDilog(
-        "You lose",
-        "score :$score",
-      );
-    }
-    bool isWon = true;
-    for (var i = 0; i < randomWordGenerate.length; i++) {
-      String addAlphas = randomWordGenerate[i];
-      if (!guessWord.contains(addAlphas)) {
-        setState(() {
-          isWon = false;
-        });
-        break;
-      }
-    }
-    if (isWon) {
-      openDiloge(
-        "You Win",
-        "score :$score",
-      );
-    }
-    if (isWon) {
-      setState(() {
-        if (score >= 70) {
-          levels++;
-        } else if (score >= 100) {
-          levels++;
-        } else if (score >= 140) {
-          levels++;
-        }
+        guessWord.add(pressword);
       });
     }
-    if (levels >= 4) {
-      // closeDiloge();
-      // openDiloge(title, score);
-      openDiloge(
-        "Levels is Finshed\n Good Luck for 60% ",
-        score,
-      );
-      // Navigator.push(context,
-      //     MaterialPageRoute(builder: (context) => const GameStartPage()));
-    }
-  }
+  } // checkthatAlphs(alphabits) {
+  //   if (randomWordGenerate.contains(alphabits)) {
+  //     // print("Randomword :$randomWordGenerate");
+  //     setState(() {
+  //       guessWord.add(alphabits);
+
+  //       score += 10;
+  //     });
+  //   } else if (status != 6) {
+  //     setState(() {
+  //       status += 1;
+  //     });
+  //   } else {
+  //     wrongDilog(
+  //       "You lose",
+  //       "score :$score",
+  //     );
+  //   }
+  //   bool isWon = true;
+  //   for (var i = 0; i < randomWordGenerate.length; i++) {
+  //     String addAlphas = randomWordGenerate[i];
+
+  //     if (!guessWord.contains(addAlphas)) {
+  //       setState(() {
+  //         isWon = false;
+  //       });
+  //       break;
+  //     }
+  //   }
+  //   if (isWon) {
+  //     openDiloge(
+  //       "You Win",
+  //       "score :$score",
+  //     );
+  //   }
+  //   if (isWon) {
+  //     setState(() {
+  //       if (score >= 70) {
+  //         levels++;
+  //       } else if (score >= 100) {
+  //         levels++;
+  //       } else if (score >= 140) {
+  //         levels++;
+  //       }
+  //     });
+  //   }
+  //   if (levels >= 4) {
+  //     openDiloge(
+  //       "Levels is Finshed\n Good Luck for 60% ",
+  //       score,
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
+    print("guessword : $guessWord");
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+
+// Appbar
+
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 19, 19, 19),
           title: Center(
@@ -348,6 +390,9 @@ class _GameScreenState extends State<GameScreen> {
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width / 4.0,
                   height: 50,
+
+// Score Module
+
                   child: Text(
                     "Score : $score ",
                     style: gameTextStyle(
@@ -366,12 +411,22 @@ class _GameScreenState extends State<GameScreen> {
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width / 4.0,
                   height: 50,
-                  child: Text(
-                    "Hints ",
-                    style: gameTextStyle(
-                        20,
-                        const Color.fromARGB(255, 255, 255, 255),
-                        FontWeight.bold),
+
+// Hints Module
+
+                  child: InkWell(
+                    onTap: () {
+                      // int rand = Random().nextInt(hintsword.length);
+                      // if (status == 0) {
+                      //   letters.indexOf(randomWordGenerate[hintsword[rand]]);
+                    },
+                    child: Text(
+                      "Hints ",
+                      style: gameTextStyle(
+                          20,
+                          const Color.fromARGB(255, 255, 255, 255),
+                          FontWeight.bold),
+                    ),
                   ),
                 ),
               ]),
@@ -385,6 +440,9 @@ class _GameScreenState extends State<GameScreen> {
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width / 2.5,
                 height: 50,
+
+// try lift Module
+
                 child: Text(
                   "${6 - status} Try Lift",
                   style: gameTextStyle(
@@ -416,6 +474,9 @@ class _GameScreenState extends State<GameScreen> {
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width / 2.1,
                       height: 50,
+
+// Levels Module
+
                       child: Text(
                         "levels $levels  ",
                         // "HINT : ANIMAL CATEGORY",
@@ -424,7 +485,7 @@ class _GameScreenState extends State<GameScreen> {
                             const Color.fromARGB(255, 0, 0, 0),
                             FontWeight.bold),
                       ),
-                    )
+                    ),
 
                     // Container(
 
@@ -435,6 +496,9 @@ class _GameScreenState extends State<GameScreen> {
               const SizedBox(
                 height: 30,
               ),
+
+// Core Display Logic Module
+
               Text(
                 hangmanWord(),
                 style: gameTextStyle(
@@ -448,12 +512,15 @@ class _GameScreenState extends State<GameScreen> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 childAspectRatio: 1.1,
+
+// keyboard maping Module
+
                 children: letters.map((alphabits) {
                   return Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: InkWell(
                       onTap: () {
-                        checkthatAlphs(alphabits);
+                        checkKeyPress(alphabits);
                       },
                       child: Center(
                         child: Text(
