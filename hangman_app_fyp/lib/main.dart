@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_app_fyp/game_screen/gamescreen.dart';
+import 'package:hangman_app_fyp/initials%20Screens/splashscreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: GameScreen(),
+      home: SplashScreen(),
     );
   }
 }

@@ -27,7 +27,7 @@ class _GameScreenState extends State<GameScreen> {
 
 // false word dilogue
 
-  wrongDilog(var title, score) {
+  wrongDilog(var score, var title) {
     return showDialog(
         barrierDismissible: false,
         context: context,
@@ -52,7 +52,7 @@ class _GameScreenState extends State<GameScreen> {
                         width: 125.0,
                       ),
                       Text(
-                        title,
+                        score,
                         style: gameTextStyle(
                             24,
                             const Color.fromARGB(255, 255, 255, 255),
@@ -60,7 +60,7 @@ class _GameScreenState extends State<GameScreen> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        score,
+                        title,
                         style: gameTextStyle(
                             24,
                             const Color.fromARGB(255, 255, 255, 255),
@@ -224,9 +224,14 @@ class _GameScreenState extends State<GameScreen> {
                         height: 5,
                       ),
                       Container(
+                        height: 48,
                         margin: const EdgeInsets.only(top: 20),
                         width: MediaQuery.of(context).size.width / 2,
                         child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  Colors.white),
+                            ),
                             onPressed: () {
                               Navigator.pop(context);
                               setState(() {
@@ -246,7 +251,9 @@ class _GameScreenState extends State<GameScreen> {
                                 child: Text(
                               "Game End",
                               style: gameTextStyle(
-                                  20, Colors.white, FontWeight.bold),
+                                  20,
+                                  const Color.fromARGB(255, 0, 0, 0),
+                                  FontWeight.bold),
                             ))),
                       )
                     ],
@@ -279,21 +286,6 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
     return displayword;
-
-    // String displayWord = "";
-    // for (var i = 0; i < randomWordGenerate.length; i++) {
-    //   String addAlphas = randomWordGenerate[i];
-    //   // var hintword = randomWordGenerate[i];
-
-    //   if (guessWord.contains(addAlphas)) {
-    //     displayWord += "$addAlphas ";
-    //     print("displayword : $displayWord");
-    //   } else {
-    //     displayWord += "-";
-    //   }
-    // }
-
-    // return displayWord;
   }
 
 // display words
@@ -302,66 +294,55 @@ class _GameScreenState extends State<GameScreen> {
     if (randomWordGenerate.contains(pressword)) {
       setState(() {
         guessWord.add(pressword);
+        score += 10;
+      });
+    } else if (status != 6) {
+      setState(() {
+        status += 1;
+      });
+    } else {
+      wrongDilog(
+        "You lose",
+        "score :$score",
+      );
+    }
+    bool isWin = true;
+    for (var i = 0; i < randomWordGenerate.length; i++) {
+      String storedWord = randomWordGenerate[i];
+      if (!guessWord.contains(storedWord)) {
+        setState(() {
+          isWin = false;
+        });
+        break;
+      }
+    }
+    if (isWin) {
+      openDiloge(
+        "You Win",
+        "score :$score",
+      );
+    }
+    if (isWin) {
+      setState(() {
+        if (score >= 70) {
+          levels++;
+        } else if (score >= 100) {
+          levels++;
+        } else if (score >= 140) {
+          levels++;
+        }
       });
     }
-  } // checkthatAlphs(alphabits) {
-  //   if (randomWordGenerate.contains(alphabits)) {
-  //     // print("Randomword :$randomWordGenerate");
-  //     setState(() {
-  //       guessWord.add(alphabits);
-
-  //       score += 10;
-  //     });
-  //   } else if (status != 6) {
-  //     setState(() {
-  //       status += 1;
-  //     });
-  //   } else {
-  //     wrongDilog(
-  //       "You lose",
-  //       "score :$score",
-  //     );
-  //   }
-  //   bool isWon = true;
-  //   for (var i = 0; i < randomWordGenerate.length; i++) {
-  //     String addAlphas = randomWordGenerate[i];
-
-  //     if (!guessWord.contains(addAlphas)) {
-  //       setState(() {
-  //         isWon = false;
-  //       });
-  //       break;
-  //     }
-  //   }
-  //   if (isWon) {
-  //     openDiloge(
-  //       "You Win",
-  //       "score :$score",
-  //     );
-  //   }
-  //   if (isWon) {
-  //     setState(() {
-  //       if (score >= 70) {
-  //         levels++;
-  //       } else if (score >= 100) {
-  //         levels++;
-  //       } else if (score >= 140) {
-  //         levels++;
-  //       }
-  //     });
-  //   }
-  //   if (levels >= 4) {
-  //     openDiloge(
-  //       "Levels is Finshed\n Good Luck for 60% ",
-  //       score,
-  //     );
-  //   }
-  // }
+    if (levels >= 3) {
+      openDiloge(
+        "Levels is Finshed\n Good Luck for 60% ",
+        score,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    print("guessword : $guessWord");
-
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
 

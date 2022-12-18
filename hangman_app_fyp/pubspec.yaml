@@ -41,6 +41,7 @@ dependencies:
   avatar_glow: ^2.0.2
   dropdown_button2: ^1.9.2
   particles_flutter: ^0.1.4
+  page_transition: ^2.0.9
 
 dev_dependencies:
   flutter_test:
