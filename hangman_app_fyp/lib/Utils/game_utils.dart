@@ -6,7 +6,17 @@ TextStyle gameTextStyle(double size, [Color? color, FontWeight? fw]) {
 
 String word = "Flutter".toUpperCase();
 
-List wordlist = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List animalList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List countriesList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+
+List foodsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+
+List fruitsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+
+List languagesList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+
+List sportsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+
 List<String> letters = [
   'A',
   'B',

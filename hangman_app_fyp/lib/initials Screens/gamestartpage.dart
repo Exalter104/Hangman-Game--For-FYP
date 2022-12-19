@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:hangman_app_fyp/initials%20Screens/modes.dart';
 import 'package:page_transition/page_transition.dart';
-
-import '../game_screen/gamescreen.dart';
 
 class GameStartPage extends StatefulWidget {
   const GameStartPage({super.key});
@@ -46,7 +45,7 @@ class _GameStartPageState extends State<GameStartPage> {
               repeatPauseDuration: const Duration(milliseconds: 70),
               child: MaterialButton(
                 onPressed: () => Navigator.of(context).push(PageTransition(
-                    child: const GameScreen(),
+                    child: const Modes(),
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 800),
                     reverseDuration: const Duration(milliseconds: 800))),

@@ -2,18 +2,18 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
-class GameScreen extends StatefulWidget {
-  const GameScreen({super.key});
+class CountryCategory extends StatefulWidget {
+  const CountryCategory({super.key});
 
   @override
-  State<GameScreen> createState() => _GameScreenState();
+  State<CountryCategory> createState() => _CountryCategoryState();
 }
 
 //images for words
 
-class _GameScreenState extends State<GameScreen> {
+class _CountryCategoryState extends State<CountryCategory> {
   List gameImages = [
     "images/0.png",
     "images/1.png",
@@ -25,8 +25,19 @@ class _GameScreenState extends State<GameScreen> {
   ];
 
 // false word dilogue
+  int levels = 1;
+  var hintsword = [];
+// random word genertor
 
-  wrongDilog(var score, var title) {
+  String randomWordGenerate =
+      countriesList[Random().nextInt(countriesList.length)];
+
+  int score = 0;
+  int status = 0;
+// adding the words in array list
+  var hintList = [];
+  var guessWord = [];
+  wrongDilog(var title) {
     return showDialog(
         barrierDismissible: false,
         context: context,
@@ -51,7 +62,7 @@ class _GameScreenState extends State<GameScreen> {
                         width: 125.0,
                       ),
                       Text(
-                        score,
+                        " Previous Score : $score",
                         style: gameTextStyle(
                             24,
                             const Color.fromARGB(255, 255, 255, 255),
@@ -82,10 +93,10 @@ class _GameScreenState extends State<GameScreen> {
                               Navigator.pop(context);
                               setState(() {
                                 status = 0;
-                                score = 0;
+                                // score = 0;
                                 guessWord.clear();
-                                randomWordGenerate =
-                                    wordlist[Random().nextInt(wordlist.length)];
+                                randomWordGenerate = countriesList[
+                                    Random().nextInt(countriesList.length)];
                               });
                             },
                             child: Center(
@@ -106,82 +117,82 @@ class _GameScreenState extends State<GameScreen> {
 
   openDiloge(
     var title,
-    var score,
   ) {
     if (levels <= 3) {
-      return showDialog(
+      showDialog(
           barrierDismissible: false,
           context: context,
           builder: (context) {
             return Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30),
-              ),
-              backgroundColor: Colors.black,
-              child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 280,
-                  decoration: const BoxDecoration(
-                    color: Colors.black12,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "images/win4.gif",
-                        height: 125.0,
-                        width: 125.0,
-                      ),
-                      Text(
-                        title,
-                        style: gameTextStyle(
-                            24,
-                            const Color.fromARGB(255, 255, 255, 255),
-                            FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Score:$score",
-                        style: gameTextStyle(
-                            24,
-                            const Color.fromARGB(255, 255, 255, 255),
-                            FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        height: 48,
-                        margin: const EdgeInsets.only(top: 20),
-                        width: MediaQuery.of(context).size.width / 2,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                              setState(() {
-                                status = 0;
-                                score = 0;
-                                guessWord.clear();
-                                randomWordGenerate =
-                                    wordlist[Random().nextInt(wordlist.length)];
-                              });
-                            },
-                            child: Center(
-                                child: Text(
-                              "Play Again",
-                              style: gameTextStyle(
-                                  20,
-                                  const Color.fromARGB(255, 0, 0, 0),
-                                  FontWeight.bold),
-                            ))),
-                      ),
-                    ],
-                  )),
-            );
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                backgroundColor: Colors.black,
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 280,
+                    decoration: const BoxDecoration(
+                      color: Colors.black12,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "images/win2.gif",
+                          height: 125.0,
+                          width: 125.0,
+                        ),
+                        Text(
+                          title,
+                          style: gameTextStyle(
+                              24,
+                              const Color.fromARGB(255, 255, 255, 255),
+                              FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          "Score : $score",
+                          style: gameTextStyle(
+                              24,
+                              const Color.fromARGB(255, 255, 255, 255),
+                              FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        Container(
+                          height: 48,
+                          margin: const EdgeInsets.only(top: 20),
+                          width: MediaQuery.of(context).size.width / 2,
+                          child: ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                setState(() {
+                                  status = 0;
+                                  guessWord.clear();
+                                  // score = 0;
+
+                                  randomWordGenerate = countriesList[
+                                      Random().nextInt(countriesList.length)];
+                                });
+                              },
+                              child: Center(
+                                  child: Text(
+                                "Play Again",
+                                style: gameTextStyle(
+                                    20,
+                                    const Color.fromARGB(255, 0, 0, 0),
+                                    FontWeight.bold),
+                              ))),
+                        ),
+                      ],
+                    )));
           });
     }
 
@@ -212,7 +223,7 @@ class _GameScreenState extends State<GameScreen> {
                         width: 125.0,
                       ),
                       Text(
-                        "You Reached to Highest Rank,Good luck to 60%",
+                        title,
                         style: gameTextStyle(
                             24,
                             const Color.fromARGB(255, 255, 255, 255),
@@ -237,15 +248,20 @@ class _GameScreenState extends State<GameScreen> {
                                 status = 0;
                                 guessWord.clear();
                                 levels = 0;
-                                randomWordGenerate =
-                                    wordlist[Random().nextInt(wordlist.length)];
+                                randomWordGenerate = countriesList[
+                                    Random().nextInt(countriesList.length)];
 
-                                () => Navigator.of(context).push(PageTransition(
-                                    child: const GameScreen(),
-                                    type: PageTransitionType.rightToLeft,
-                                    duration: const Duration(milliseconds: 600),
-                                    reverseDuration:
-                                        const Duration(milliseconds: 600)));
+                                // () => Navigator.of(context).push(PageTransition(
+                                //     child: const GameStartPage(),
+                                //     type: PageTransitionType.rightToLeft,
+                                //     duration: const Duration(milliseconds: 600),
+                                //     reverseDuration:
+                                //         const Duration(milliseconds: 600)));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const GameStartPage()));
                               });
                             },
                             child: Center(
@@ -264,17 +280,6 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  int levels = 1;
-  var hintsword = [];
-// random word genertor
-
-  String randomWordGenerate = wordlist[Random().nextInt(wordlist.length)];
-
-  int score = 0;
-  int status = 0;
-// adding the words in array list
-  var hintList = [];
-  var guessWord = [];
   hangmanWord() {
     String displayword = "";
     for (var i = 0; i < randomWordGenerate.length; i++) {
@@ -304,7 +309,6 @@ class _GameScreenState extends State<GameScreen> {
     } else {
       wrongDilog(
         "You lose",
-        "score :$score",
       );
     }
     bool isWin = true;
@@ -318,30 +322,27 @@ class _GameScreenState extends State<GameScreen> {
       }
     }
     if (isWin) {
-      openDiloge(
-        "You Win",
-        "score :$score",
-      );
+      openDiloge("You Win");
     }
     if (isWin) {
       setState(() {
-        if (score >= 70) {
+        if (score > 80) {
           levels++;
-        } else if (score >= 100) {
+        } else if (score > 130) {
           levels++;
-        } else if (score >= 140) {
+        } else if (score > 190) {
           levels++;
         }
       });
     }
-    if (levels >= 3) {
+    if (levels > 3) {
       openDiloge(
         "Levels is Finshed\n Good Luck for 60% ",
-        score,
       );
     }
   }
 
+  bool isButtonActive = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -383,34 +384,34 @@ class _GameScreenState extends State<GameScreen> {
                         FontWeight.bold),
                   ),
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(40.0),
-                          topLeft: Radius.circular(40.0))),
-                  margin: const EdgeInsets.only(top: 30),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width / 4.0,
-                  height: 50,
+//                 Container(
+//                   decoration: const BoxDecoration(
+//                       color: Color.fromARGB(255, 0, 0, 0),
+//                       borderRadius: BorderRadius.only(
+//                           bottomLeft: Radius.circular(40.0),
+//                           topLeft: Radius.circular(40.0))),
+//                   margin: const EdgeInsets.only(top: 30),
+//                   alignment: Alignment.center,
+//                   width: MediaQuery.of(context).size.width / 4.0,
+//                   height: 50,
 
-// Hints Module
+// // Hints Module
 
-                  child: InkWell(
-                    onTap: () {
-                      // int rand = Random().nextInt(hintsword.length);
-                      // if (status == 0) {
-                      //   letters.indexOf(randomWordGenerate[hintsword[rand]]);
-                    },
-                    child: Text(
-                      "Hints ",
-                      style: gameTextStyle(
-                          20,
-                          const Color.fromARGB(255, 255, 255, 255),
-                          FontWeight.bold),
-                    ),
-                  ),
-                ),
+//                   child: InkWell(
+//                     onTap: () {
+//                       // int rand = Random().nextInt(hintsword.length);
+//                       // if (status == 0) {
+//                       //   letters.indexOf(randomWordGenerate[hintsword[rand]]);
+//                     },
+//                     // child: Text(
+//                     //   "Hints ",
+//                     //   style: gameTextStyle(
+//                     //       20,
+//                     //       const Color.fromARGB(255, 255, 255, 255),
+//                     //       FontWeight.bold),
+//                     // ),
+//                   ),
+//                 ),
               ]),
               Row(
                 children: const [],
@@ -460,7 +461,7 @@ class _GameScreenState extends State<GameScreen> {
 // Levels Module
 
                       child: Text(
-                        "levels $levels  ",
+                        "Levels $levels  ",
                         // "HINT : ANIMAL CATEGORY",
                         style: gameTextStyle(
                             20,
