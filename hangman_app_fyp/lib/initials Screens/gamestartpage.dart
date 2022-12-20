@@ -15,7 +15,11 @@ class _GameStartPageState extends State<GameStartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: const Color.fromARGB(255, 118, 118, 118),
       body: SafeArea(
         child: Column(
           children: [

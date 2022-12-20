@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
+import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
 class CountryCategory extends StatefulWidget {
@@ -384,34 +385,30 @@ class _CountryCategoryState extends State<CountryCategory> {
                         FontWeight.bold),
                   ),
                 ),
-//                 Container(
-//                   decoration: const BoxDecoration(
-//                       color: Color.fromARGB(255, 0, 0, 0),
-//                       borderRadius: BorderRadius.only(
-//                           bottomLeft: Radius.circular(40.0),
-//                           topLeft: Radius.circular(40.0))),
-//                   margin: const EdgeInsets.only(top: 30),
-//                   alignment: Alignment.center,
-//                   width: MediaQuery.of(context).size.width / 4.0,
-//                   height: 50,
+                Container(
+                  decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(40.0),
+                          topLeft: Radius.circular(40.0))),
+                  margin: const EdgeInsets.only(top: 30),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width / 4.0,
+                  height: 50,
 
-// // Hints Module
+// Hints Module
 
-//                   child: InkWell(
-//                     onTap: () {
-//                       // int rand = Random().nextInt(hintsword.length);
-//                       // if (status == 0) {
-//                       //   letters.indexOf(randomWordGenerate[hintsword[rand]]);
-//                     },
-//                     // child: Text(
-//                     //   "Hints ",
-//                     //   style: gameTextStyle(
-//                     //       20,
-//                     //       const Color.fromARGB(255, 255, 255, 255),
-//                     //       FontWeight.bold),
-//                     // ),
-//                   ),
-//                 ),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Text(
+                      categories[1],
+                      style: gameTextStyle(
+                          20,
+                          const Color.fromARGB(255, 255, 255, 255),
+                          FontWeight.bold),
+                    ),
+                  ),
+                ),
               ]),
               Row(
                 children: const [],

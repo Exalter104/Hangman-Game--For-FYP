@@ -20,7 +20,11 @@ class _ModesState extends State<Modes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: const Color.fromARGB(255, 118, 118, 118),
       body: SafeArea(
           child: Column(children: [
         const Image(
@@ -41,8 +45,8 @@ class _ModesState extends State<Modes> {
             width: MediaQuery.of(context).size.width,
             height: 90,
             decoration: const BoxDecoration(
-              color: Colors.black12,
-            ),
+                // color: Colors.black12,
+                ),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               const SizedBox(
