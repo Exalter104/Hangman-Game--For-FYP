@@ -2,7 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
-import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
+import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
+// import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
 class CountryCategory extends StatefulWidget {
@@ -283,7 +284,9 @@ class _CountryCategoryState extends State<CountryCategory> {
 
   hangmanWord() {
     String displayword = "";
-    for (var i = 0; i < randomWordGenerate.length; i++) {
+    String hint = randomWordGenerate[0];
+    displayword += hint;
+    for (var i = 1; i < randomWordGenerate.length; i++) {
       String storedWord = randomWordGenerate[i];
       if (guessWord.contains(storedWord)) {
         // print(guessWord);
@@ -313,7 +316,7 @@ class _CountryCategoryState extends State<CountryCategory> {
       );
     }
     bool isWin = true;
-    for (var i = 0; i < randomWordGenerate.length; i++) {
+    for (var i = 1; i < randomWordGenerate.length; i++) {
       String storedWord = randomWordGenerate[i];
       if (!guessWord.contains(storedWord)) {
         setState(() {
@@ -347,11 +350,12 @@ class _CountryCategoryState extends State<CountryCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 118, 118, 118),
 
 // Appbar
 
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(255, 19, 19, 19),
           title: Center(
             child: Text(
@@ -365,9 +369,13 @@ class _CountryCategoryState extends State<CountryCategory> {
             child: Column(children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: BorderRadius.only(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        width: 1,
+                      ),
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(40.0),
                           topRight: Radius.circular(40.0))),
                   margin: const EdgeInsets.only(top: 30),
@@ -385,10 +393,15 @@ class _CountryCategoryState extends State<CountryCategory> {
                         FontWeight.bold),
                   ),
                 ),
+                // const Text('data'),
                 Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: BorderRadius.only(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        width: 1,
+                      ),
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(40.0),
                           topLeft: Radius.circular(40.0))),
                   margin: const EdgeInsets.only(top: 30),
@@ -399,23 +412,27 @@ class _CountryCategoryState extends State<CountryCategory> {
 // Hints Module
 
                   child: InkWell(
-                    onTap: () {},
-                    child: Text(
-                      categories[1],
-                      style: gameTextStyle(
-                          20,
-                          const Color.fromARGB(255, 255, 255, 255),
-                          FontWeight.bold),
-                    ),
-                  ),
+                      onTap: () {},
+                      child: Text(
+                        allCategories[0],
+                        style: gameTextStyle(
+                            20,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                      )),
                 ),
               ]),
               Row(
                 children: const [],
               ),
               Container(
-                decoration:
-                    const BoxDecoration(color: Color.fromARGB(255, 0, 0, 0)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      width: 1,
+                    ),
+                    color: const Color.fromARGB(255, 0, 0, 0)),
                 margin: const EdgeInsets.only(top: 30),
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width / 2.5,
@@ -448,8 +465,13 @@ class _CountryCategoryState extends State<CountryCategory> {
                 child: Column(
                   children: [
                     Container(
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 255, 255, 255)),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            width: 1,
+                          ),
+                          color: const Color.fromARGB(255, 0, 0, 0)),
                       margin: const EdgeInsets.only(top: 30),
                       alignment: Alignment.center,
                       width: MediaQuery.of(context).size.width / 2.1,
@@ -462,7 +484,7 @@ class _CountryCategoryState extends State<CountryCategory> {
                         // "HINT : ANIMAL CATEGORY",
                         style: gameTextStyle(
                             20,
-                            const Color.fromARGB(255, 0, 0, 0),
+                            const Color.fromARGB(255, 255, 255, 255),
                             FontWeight.bold),
                       ),
                     ),
@@ -479,42 +501,58 @@ class _CountryCategoryState extends State<CountryCategory> {
 
 // Core Display Logic Module
 
-              Text(
-                hangmanWord(),
-                style: gameTextStyle(
-                    35, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-              ),
+              Text(hangmanWord(),
+                  style: gameTextStyle(
+                      40, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold)),
+
               const SizedBox(
                 height: 30,
               ),
-              GridView.count(
-                crossAxisCount: 7,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                childAspectRatio: 1.1,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridView.count(
+                  crossAxisCount: 7,
+                  shrinkWrap: true,
+
+                  physics: const NeverScrollableScrollPhysics(),
+                  childAspectRatio: 1,
 
 // keyboard maping Module
 
-                children: letters.map((alphabits) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 6),
-                    child: InkWell(
-                      onTap: () {
-                        checkKeyPress(alphabits);
-                      },
-                      child: Center(
-                        child: Text(
-                          alphabits,
-                          style: gameTextStyle(
-                            20,
-                            const Color.fromARGB(255, 0, 0, 0),
-                            FontWeight.bold,
+                  children: letters.map((alphabits) {
+                    return Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            width: 2,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 6),
+                          child: InkWell(
+                            onTap: () {
+                              checkKeyPress(alphabits);
+                            },
+                            child: Center(
+                              child: Text(
+                                alphabits,
+                                style: gameTextStyle(
+                                  20,
+                                  const Color.fromARGB(255, 255, 255, 255),
+                                  FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               )
             ])));
   }

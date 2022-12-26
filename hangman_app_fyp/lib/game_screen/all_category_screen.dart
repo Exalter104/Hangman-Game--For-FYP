@@ -1,30 +1,31 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
-import 'package:hangman_app_fyp/Utils/game_utils.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/animal_category.dart';
 import 'package:hangman_app_fyp/game_screen/Categories%20screens/countries_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/foods_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/fruits_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/languages_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/sports.dart';
+import 'package:hangman_app_fyp/game_screen/Categories%20screens/food_category.dart';
+import 'package:hangman_app_fyp/game_screen/Categories%20screens/fruits_categories.dart';
+import 'package:hangman_app_fyp/game_screen/Categories%20screens/sports_category.dart';
 import 'package:page_transition/page_transition.dart';
 
-class CategoryMode extends StatefulWidget {
-  const CategoryMode({super.key});
+import '../Utils/game_utils.dart';
+import 'Categories screens/language_category.dart';
+
+class AllCAtegories extends StatefulWidget {
+  const AllCAtegories({super.key});
 
   @override
-  State<CategoryMode> createState() => _CategoryModeState();
+  State<AllCAtegories> createState() => _AllCAtegoriesState();
 }
 
-List<String> categories = [
-  "ANIMALS",
-  "COUNTRIES",
-  "FOODS",
-  "FRUITS",
-  "LANGUAGE",
+List<String> allCategories = [
   "SPORTS",
+  "FRUITS",
+  "COUNTRIES",
+  "LANGUAGE",
+  "FOODS"
 ];
 
-class _CategoryModeState extends State<CategoryMode> {
+class _AllCAtegoriesState extends State<AllCAtegories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +67,7 @@ class _CategoryModeState extends State<CategoryMode> {
               ),
               InkWell(
                 onTap: () => Navigator.of(context).push(PageTransition(
-                    child: const AnimalCategory(),
+                    child: const SportCategory(),
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 600),
                     reverseDuration: const Duration(milliseconds: 600))),
@@ -82,63 +83,7 @@ class _CategoryModeState extends State<CategoryMode> {
                   child: Center(
                     heightFactor: 4.2,
                     child: Text(
-                      categories[0],
-                      style: gameTextStyle(17,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () => Navigator.of(context).push(PageTransition(
-                    child: const CountryCategory(),
-                    type: PageTransitionType.rightToLeft,
-                    duration: const Duration(milliseconds: 600),
-                    reverseDuration: const Duration(milliseconds: 600))),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  child: Center(
-                    heightFactor: 4.2,
-                    child: Text(
-                      categories[1],
-                      style: gameTextStyle(17,
-                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () => Navigator.of(context).push(PageTransition(
-                    child: const FoodCategory(),
-                    type: PageTransitionType.rightToLeft,
-                    duration: const Duration(milliseconds: 600),
-                    reverseDuration: const Duration(milliseconds: 600))),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      width: 2,
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  child: Center(
-                    heightFactor: 4.2,
-                    child: Text(
-                      categories[2],
+                      allCategories[0],
                       style: gameTextStyle(17,
                           const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
                     ),
@@ -166,7 +111,35 @@ class _CategoryModeState extends State<CategoryMode> {
                   child: Center(
                     heightFactor: 4.2,
                     child: Text(
-                      categories[3],
+                      allCategories[1],
+                      style: gameTextStyle(17,
+                          const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () => Navigator.of(context).push(PageTransition(
+                    child: const CountryCategory(),
+                    type: PageTransitionType.rightToLeft,
+                    duration: const Duration(milliseconds: 600),
+                    reverseDuration: const Duration(milliseconds: 600))),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  child: Center(
+                    heightFactor: 4.2,
+                    child: Text(
+                      allCategories[2],
                       style: gameTextStyle(17,
                           const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
                     ),
@@ -194,7 +167,7 @@ class _CategoryModeState extends State<CategoryMode> {
                   child: Center(
                     heightFactor: 4.2,
                     child: Text(
-                      categories[4],
+                      allCategories[3],
                       style: gameTextStyle(17,
                           const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
                     ),
@@ -206,7 +179,7 @@ class _CategoryModeState extends State<CategoryMode> {
               ),
               InkWell(
                 onTap: () => Navigator.of(context).push(PageTransition(
-                    child: const SportsCategory(),
+                    child: const FoodCategory(),
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 600),
                     reverseDuration: const Duration(milliseconds: 600))),
@@ -222,12 +195,15 @@ class _CategoryModeState extends State<CategoryMode> {
                   child: Center(
                     heightFactor: 4.2,
                     child: Text(
-                      categories[5],
+                      allCategories[4],
                       style: gameTextStyle(17,
                           const Color.fromARGB(255, 0, 0, 0), FontWeight.bold),
                     ),
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 10,
               ),
             ],
           ),

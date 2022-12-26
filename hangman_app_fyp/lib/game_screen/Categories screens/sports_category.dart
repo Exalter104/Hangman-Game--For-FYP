@@ -2,19 +2,20 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
-import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
+import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
+// import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
-class AnimalCategory extends StatefulWidget {
-  const AnimalCategory({super.key});
+class SportCategory extends StatefulWidget {
+  const SportCategory({super.key});
 
   @override
-  State<AnimalCategory> createState() => _AnimalCategoryState();
+  State<SportCategory> createState() => _SportCategoryState();
 }
 
 //images for words
 
-class _AnimalCategoryState extends State<AnimalCategory> {
+class _SportCategoryState extends State<SportCategory> {
   List gameImages = [
     "images/0.png",
     "images/1.png",
@@ -30,7 +31,7 @@ class _AnimalCategoryState extends State<AnimalCategory> {
   var hintsword = [];
 // random word genertor
 
-  String randomWordGenerate = animalList[Random().nextInt(animalList.length)];
+  String randomWordGenerate = sportsList[Random().nextInt(sportsList.length)];
 
   int score = 0;
   int status = 0;
@@ -44,8 +45,6 @@ class _AnimalCategoryState extends State<AnimalCategory> {
         builder: (context) {
           return Dialog(
               shape: RoundedRectangleBorder(
-                side:
-                    const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                 borderRadius: BorderRadius.circular(30),
               ),
               backgroundColor: Colors.black,
@@ -97,8 +96,8 @@ class _AnimalCategoryState extends State<AnimalCategory> {
                                 status = 0;
                                 // score = 0;
                                 guessWord.clear();
-                                randomWordGenerate = animalList[
-                                    Random().nextInt(animalList.length)];
+                                randomWordGenerate = sportsList[
+                                    Random().nextInt(sportsList.length)];
                               });
                             },
                             child: Center(
@@ -127,8 +126,6 @@ class _AnimalCategoryState extends State<AnimalCategory> {
           builder: (context) {
             return Dialog(
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(
-                      color: Color.fromARGB(255, 255, 255, 255)),
                   borderRadius: BorderRadius.circular(30),
                 ),
                 backgroundColor: Colors.black,
@@ -182,8 +179,8 @@ class _AnimalCategoryState extends State<AnimalCategory> {
                                   guessWord.clear();
                                   // score = 0;
 
-                                  randomWordGenerate = animalList[
-                                      Random().nextInt(animalList.length)];
+                                  randomWordGenerate = sportsList[
+                                      Random().nextInt(sportsList.length)];
                                 });
                               },
                               child: Center(
@@ -209,8 +206,6 @@ class _AnimalCategoryState extends State<AnimalCategory> {
           builder: (context) {
             return Dialog(
               shape: RoundedRectangleBorder(
-                side:
-                    const BorderSide(color: Color.fromARGB(255, 255, 255, 255)),
                 borderRadius: BorderRadius.circular(30),
               ),
               backgroundColor: Colors.black,
@@ -254,8 +249,8 @@ class _AnimalCategoryState extends State<AnimalCategory> {
                                 status = 0;
                                 guessWord.clear();
                                 levels = 0;
-                                randomWordGenerate = animalList[
-                                    Random().nextInt(animalList.length)];
+                                randomWordGenerate = sportsList[
+                                    Random().nextInt(sportsList.length)];
 
                                 // () => Navigator.of(context).push(PageTransition(
                                 //     child: const GameStartPage(),
@@ -288,7 +283,9 @@ class _AnimalCategoryState extends State<AnimalCategory> {
 
   hangmanWord() {
     String displayword = "";
-    for (var i = 0; i < randomWordGenerate.length; i++) {
+    String hint = randomWordGenerate[0];
+    displayword += hint;
+    for (var i = 1; i < randomWordGenerate.length; i++) {
       String storedWord = randomWordGenerate[i];
       if (guessWord.contains(storedWord)) {
         // print(guessWord);
@@ -318,7 +315,7 @@ class _AnimalCategoryState extends State<AnimalCategory> {
       );
     }
     bool isWin = true;
-    for (var i = 0; i < randomWordGenerate.length; i++) {
+    for (var i = 1; i < randomWordGenerate.length; i++) {
       String storedWord = randomWordGenerate[i];
       if (!guessWord.contains(storedWord)) {
         setState(() {
@@ -414,15 +411,14 @@ class _AnimalCategoryState extends State<AnimalCategory> {
 // Hints Module
 
                   child: InkWell(
-                    onTap: () {},
-                    child: Text(
-                      categories[0],
-                      style: gameTextStyle(
-                          20,
-                          const Color.fromARGB(255, 255, 255, 255),
-                          FontWeight.bold),
-                    ),
-                  ),
+                      onTap: () {},
+                      child: Text(
+                        allCategories[0],
+                        style: gameTextStyle(
+                            20,
+                            const Color.fromARGB(255, 255, 255, 255),
+                            FontWeight.bold),
+                      )),
                 ),
               ]),
               Row(

@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
+import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
+// import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:page_transition/page_transition.dart';
 
 import '../Utils/game_utils.dart';
@@ -27,12 +28,22 @@ class _ModesState extends State<Modes> {
       backgroundColor: const Color.fromARGB(255, 118, 118, 118),
       body: SafeArea(
           child: Column(children: [
-        const Image(
-            height: 400,
-            width: 400,
-            image: AssetImage(
-              "images/gallow.png",
-            )),
+        const SizedBox(height: 10),
+        Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(20),
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(40)),
+          ),
+          child: const Image(
+              height: 400,
+              width: 400,
+              image: AssetImage(
+                "images/gallow.png",
+              )),
+        ),
         Text(
           "HANGMAN",
           style: GoogleFonts.abel(
@@ -62,7 +73,7 @@ class _ModesState extends State<Modes> {
                           MaterialStateProperty.all<Color>(Colors.white),
                     ),
                     onPressed: () => Navigator.of(context).push(PageTransition(
-                        child: const CategoryMode(),
+                        child: AllCAtegories(),
                         type: PageTransitionType.rightToLeft,
                         duration: const Duration(milliseconds: 600),
                         reverseDuration: const Duration(milliseconds: 600))),

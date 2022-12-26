@@ -4,18 +4,54 @@ TextStyle gameTextStyle(double size, [Color? color, FontWeight? fw]) {
   return TextStyle(color: color, fontSize: size, fontWeight: fw);
 }
 
-String word = "Flutter".toUpperCase();
+// List animalList = ["CAT", "DOG", "COW", "HOG", "FOX", "DEER", "SNACK"];
+List countriesList = [
+  "PAKISTAN",
+  "AFGHAN",
+  "IRON",
+  "DUBAI",
+  "INDIA",
+];
 
-List animalList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
-List countriesList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List foodsList = [
+  "GRAINS",
+  "BEANS",
+  "NUTS",
+  "MEAT",
+  "POULTRY",
+  "FISH",
+];
 
-List foodsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List fruitsList = [
+  "APPLE",
+  "ORANGE",
+  "CHERRY",
+  "GRAPE",
+  "MANGO",
+  "BANANA",
+  "PEACH",
+];
 
-List fruitsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List languagesList = [
+  "SPANISH",
+  "ENGLISH",
+  "FRENCH",
+  "GERMAN",
+  "ARABIC",
+  "HINDI",
+  "CHINESE",
+  "RUSSIAN",
+];
 
-List languagesList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
-
-List sportsList = ["RUN", "MOON", "STAR", "BULB", "TEST", "CAR", "HONEST"];
+List<String> sportsList = [
+  "FOOTBALL",
+  "CRICKET",
+  "HOCKEY",
+  "TENNIS",
+  "BASKETBALL",
+  "SNOCKER",
+  "GOLF"
+];
 
 List<String> letters = [
   'A',
