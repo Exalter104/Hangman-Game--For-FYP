@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:hangman_app_fyp/initials%20Screens/modes.dart';
 import 'package:page_transition/page_transition.dart';
@@ -16,10 +16,11 @@ class _GameStartPageState extends State<GameStartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
+        backgroundColor: const Color.fromARGB(255, 21, 26, 74),
       ),
-      backgroundColor: const Color.fromARGB(255, 118, 118, 118),
+      backgroundColor: const Color.fromARGB(255, 21, 26, 74),
       body: SafeArea(
         child: Column(
           children: [
@@ -32,9 +33,9 @@ class _GameStartPageState extends State<GameStartPage> {
             const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               "HANGMAN",
-              style: GoogleFonts.abel(
+              style: TextStyle(
                   color: Colors.white,
                   fontSize: 48,
                   fontWeight: FontWeight.bold),

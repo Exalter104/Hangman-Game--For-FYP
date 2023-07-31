@@ -422,8 +422,8 @@ class _LanguageCategoryState extends State<LanguageCategory> {
                       )),
                 ),
               ]),
-              Row(
-                children: const [],
+              const Row(
+                children: [],
               ),
               Container(
                 decoration: BoxDecoration(

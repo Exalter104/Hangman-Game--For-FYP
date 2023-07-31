@@ -421,8 +421,8 @@ class _SportCategoryState extends State<SportCategory> {
                       )),
                 ),
               ]),
-              Row(
-                children: const [],
+              const Row(
+                children: [],
               ),
               Container(
                 decoration: BoxDecoration(

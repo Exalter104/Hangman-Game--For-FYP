@@ -420,8 +420,8 @@ class _FoodCategoryState extends State<FoodCategory> {
                       )),
                 ),
               ]),
-              Row(
-                children: const [],
+              const Row(
+                children: [],
               ),
               Container(
                 decoration: BoxDecoration(

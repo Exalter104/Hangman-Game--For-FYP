@@ -1,8 +1,8 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
-import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
 // import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
@@ -16,6 +16,48 @@ class CountryCategory extends StatefulWidget {
 //images for words
 
 class _CountryCategoryState extends State<CountryCategory> {
+  List<String> wordsList = [];
+  String? selectedValue;
+  Timer? _timer;
+  int _secondsRemaining = 60; // Change the time as per your requirement
+  void restartTimer() {
+    setState(() {
+      _secondsRemaining = 60; // Set the initial time as per your requirement
+    });
+    _timer?.cancel();
+    startTimer();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    startTimer();
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (timer) {
+        if (_secondsRemaining == 0) {
+          _timer!.cancel();
+          // Handle the game loss condition here
+          wrongDilog("Time's up!");
+        } else {
+          setState(() {
+            _secondsRemaining--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   List gameImages = [
     "images/0.png",
     "images/1.png",
@@ -95,6 +137,8 @@ class _CountryCategoryState extends State<CountryCategory> {
                               Navigator.pop(context);
                               setState(() {
                                 status = 0;
+                                restartTimer(); // Restart the timer here
+
                                 // score = 0;
                                 guessWord.clear();
                                 randomWordGenerate = countriesList[
@@ -394,36 +438,34 @@ class _CountryCategoryState extends State<CountryCategory> {
                   ),
                 ),
                 // const Text('data'),
+
+                // Timer Module
                 Container(
+                  // Customize the styling as per your preference
                   decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        width: 1,
-                      ),
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(40.0),
-                          topLeft: Radius.circular(40.0))),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      width: 1,
+                    ),
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                  ),
                   margin: const EdgeInsets.only(top: 30),
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width / 4.0,
                   height: 50,
-
-// Hints Module
-
-                  child: InkWell(
-                      onTap: () {},
-                      child: Text(
-                        allCategories[0],
-                        style: gameTextStyle(
-                            20,
-                            const Color.fromARGB(255, 255, 255, 255),
-                            FontWeight.bold),
-                      )),
+                  child: Text(
+                    "Time: $_secondsRemaining s",
+                    style: gameTextStyle(
+                      20,
+                      const Color.fromARGB(255, 255, 255, 255),
+                      FontWeight.bold,
+                    ),
+                  ),
                 ),
               ]),
-              Row(
-                children: const [],
+              const Row(
+                children: [],
               ),
               Container(
                 decoration: BoxDecoration(

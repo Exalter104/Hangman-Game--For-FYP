@@ -421,8 +421,8 @@ class _FruitsCategoryState extends State<FruitsCategory> {
                       )),
                 ),
               ]),
-              Row(
-                children: const [],
+              const Row(
+                children: [],
               ),
               Container(
                 decoration: BoxDecoration(
