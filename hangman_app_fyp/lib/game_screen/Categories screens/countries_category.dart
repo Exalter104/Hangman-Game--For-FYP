@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/Utils/game_utils.dart';
+import 'package:hangman_app_fyp/game_screen/hangman_database.dart';
 // import 'package:hangman_app_fyp/game_screen/categoryscreen.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 
@@ -16,13 +17,14 @@ class CountryCategory extends StatefulWidget {
 //images for words
 
 class _CountryCategoryState extends State<CountryCategory> {
-  List<String> wordsList = [];
   String? selectedValue;
+  final DatabaseHelper _databaseHelper = DatabaseHelper();
+
   Timer? _timer;
-  int _secondsRemaining = 60; // Change the time as per your requirement
+  int _secondsRemaining = 30; // Change the time as per your requirement
   void restartTimer() {
     setState(() {
-      _secondsRemaining = 60; // Set the initial time as per your requirement
+      _secondsRemaining = 30; // Set the initial time as per your requirement
     });
     _timer?.cancel();
     startTimer();
@@ -297,12 +299,6 @@ class _CountryCategoryState extends State<CountryCategory> {
                                 randomWordGenerate = countriesList[
                                     Random().nextInt(countriesList.length)];
 
-                                // () => Navigator.of(context).push(PageTransition(
-                                //     child: const GameStartPage(),
-                                //     type: PageTransitionType.rightToLeft,
-                                //     duration: const Duration(milliseconds: 600),
-                                //     reverseDuration:
-                                //         const Duration(milliseconds: 600)));
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -385,7 +381,7 @@ class _CountryCategoryState extends State<CountryCategory> {
     }
     if (levels > 3) {
       openDiloge(
-        "Levels is Finshed\n Good Luck for 60% ",
+        "Levels is Finshed\n Good Luck for External Presentation ",
       );
     }
   }
@@ -494,7 +490,7 @@ class _CountryCategoryState extends State<CountryCategory> {
                 height: 40,
               ),
               Image(
-                  color: const Color.fromARGB(255, 255, 255, 255),
+                  color: Colors.black,
                   fit: BoxFit.cover,
                   height: 180,
                   width: 180,

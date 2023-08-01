@@ -451,7 +451,7 @@ class _FruitsCategoryState extends State<FruitsCategory> {
                 height: 40,
               ),
               Image(
-                  color: Colors.black,
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   fit: BoxFit.cover,
                   height: 180,
                   width: 180,
@@ -502,7 +502,9 @@ class _FruitsCategoryState extends State<FruitsCategory> {
 
               Text(hangmanWord(),
                   style: gameTextStyle(
-                      40, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold)),
+                      40,
+                      const Color.fromARGB(255, 255, 255, 255),
+                      FontWeight.bold)),
 
               const SizedBox(
                 height: 30,
