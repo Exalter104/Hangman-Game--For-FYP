@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/sports_category.dart';
+import 'package:hangman_app_fyp/game_screen/Categories%20screens/countries_category.dart';
 import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -16,16 +16,10 @@ class _ModesState extends State<Modes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 21, 26, 74),
-      ),
       backgroundColor: const Color.fromARGB(255, 21, 26, 74),
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 10),
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.only(
@@ -41,52 +35,91 @@ class _ModesState extends State<Modes> {
                 image: AssetImage("images/gallow.png"),
               ),
             ),
-            const Text(
-              "HANGMAN",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 48,
-                fontWeight: FontWeight.bold,
+            const Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: 27,
+              ),
+              child: Card(
+                child: ListTile(
+                  leading: Icon(
+                    Icons.gamepad,
+                    color: Colors.black,
+                    size: 45,
+                  ),
+                  title: Text(
+                    "HANGMAN",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text(
+                    "SELECT MODE",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               ),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(
+              height: 14,
+            ),
+            const Divider(
+              indent: 33,
+              endIndent: 33,
+              color: Color.fromARGB(255, 74, 74, 74),
+            ),
+            const SizedBox(height: 10),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 90,
               decoration: BoxDecoration(
                 // Update the background color for the container
 
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 5),
-                  Container(
-                    height: 54,
-                    margin: const EdgeInsets.only(top: 20),
-                    width: MediaQuery.of(context).size.width / 1.8,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                      ),
-                      onPressed: () => Navigator.of(context).push(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 27,
+                    ),
+                    child: InkWell(
+                      onTap: () => Navigator.of(context).push(
                         PageTransition(
-                          child: const SportCategory(),
+                          child: const CountryCategory(),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 600),
                           reverseDuration: const Duration(milliseconds: 600),
                         ),
                       ),
-                      child: const Text(
-                        "Easy Mode",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      child: const Card(
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.gamepad,
+                            color: Colors.black,
+                            size: 45,
+                          ),
+                          title: Text(
+                            "EASY MODE",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text(
+                            "TAP TO PLAY",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 0, 0, 0),
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -94,18 +127,13 @@ class _ModesState extends State<Modes> {
                 ],
               ),
             ),
-            Container(
-              height: 54,
-              margin: const EdgeInsets.only(top: 20),
-              width: MediaQuery.of(context).size.width / 1.8,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                onPressed: () => Navigator.of(context).push(
+            const SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 27,
+              ),
+              child: InkWell(
+                onTap: () => Navigator.of(context).push(
                   PageTransition(
                     child: const AllCAtegories(),
                     type: PageTransitionType.rightToLeft,
@@ -113,37 +141,68 @@ class _ModesState extends State<Modes> {
                     reverseDuration: const Duration(milliseconds: 600),
                   ),
                 ),
-                child: const Text(
-                  "Classic Mode",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                child: const Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.gamepad,
+                      color: Colors.black,
+                      size: 45,
+                    ),
+                    title: Text(
+                      "CLASSIC MODE",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 28,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "TAP TO PLAY",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-            const SizedBox(height: 5),
-            Container(
-              height: 54,
-              margin: const EdgeInsets.only(top: 20),
-              width: MediaQuery.of(context).size.width / 1.8,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 27,
+              ),
+              child: InkWell(
+                onTap: () => Navigator.of(context).push(
+                  PageTransition(
+                    child: const CountryCategory(),
+                    type: PageTransitionType.rightToLeft,
+                    duration: const Duration(milliseconds: 600),
+                    reverseDuration: const Duration(milliseconds: 600),
                   ),
                 ),
-                onPressed: () {
-                  // Add functionality for Pro Mode
-                },
-                child: const Text(
-                  "Pro Mode",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
+                child: const Card(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.gamepad,
+                      color: Colors.black,
+                      size: 45,
+                    ),
+                    title: Text(
+                      "PRO MODE",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 28,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "TAP TO PLAY",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 18,
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -412,7 +412,7 @@ class _FoodCategoryState extends State<FoodCategory> {
                   child: InkWell(
                       onTap: () {},
                       child: Text(
-                        allCategories[0],
+                        allCategories[3],
                         style: gameTextStyle(
                             20,
                             const Color.fromARGB(255, 255, 255, 255),

@@ -414,7 +414,7 @@ class _LanguageCategoryState extends State<LanguageCategory> {
                   child: InkWell(
                       onTap: () {},
                       child: Text(
-                        allCategories[0],
+                        allCategories[2],
                         style: gameTextStyle(
                             20,
                             const Color.fromARGB(255, 255, 255, 255),

@@ -394,13 +394,13 @@ class _CountryCategoryState extends State<CountryCategory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 118, 118, 118),
+        backgroundColor: const Color.fromARGB(255, 21, 26, 74),
 
 // Appbar
 
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 19, 19, 19),
+          backgroundColor: const Color.fromARGB(255, 21, 26, 74),
           title: Center(
             child: Text(
               "Hangman Game ",
@@ -494,7 +494,7 @@ class _CountryCategoryState extends State<CountryCategory> {
                 height: 40,
               ),
               Image(
-                  color: Colors.black,
+                  color: const Color.fromARGB(255, 255, 255, 255),
                   fit: BoxFit.cover,
                   height: 180,
                   width: 180,
@@ -545,7 +545,9 @@ class _CountryCategoryState extends State<CountryCategory> {
 
               Text(hangmanWord(),
                   style: gameTextStyle(
-                      40, const Color.fromARGB(255, 0, 0, 0), FontWeight.bold)),
+                      40,
+                      const Color.fromARGB(255, 255, 255, 255),
+                      FontWeight.bold)),
 
               const SizedBox(
                 height: 30,
