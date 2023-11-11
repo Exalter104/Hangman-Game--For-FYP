@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:hangman_app_fyp/initials%20Screens/gamestartpage.dart';
 import 'package:page_transition/page_transition.dart';
@@ -43,29 +43,23 @@ class _SplashScreenState extends State<SplashScreen> {
           const SizedBox(
             height: 140,
           ),
-          DefaultTextStyle(
-            style: const TextStyle(
-              fontSize: 40.0,
-              fontFamily: 'Horizon',
-            ),
-            child: Center(
-              child: AnimatedTextKit(
-                  animatedTexts: [
-                    WavyAnimatedText(
-                      'HANGMAN',
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                  onTap: () => Navigator.of(context).push(PageTransition(
-                      child: const GameStartPage(),
-                      type: PageTransitionType.leftToRight,
-                      duration: const Duration(milliseconds: 800),
-                      reverseDuration: const Duration(milliseconds: 800)))),
-            ),
-          )
+          Center(
+            child: AnimatedTextKit(
+                animatedTexts: [
+                  WavyAnimatedText(
+                    'HANGMAN APP',
+                    textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+                onTap: () => Navigator.of(context).push(PageTransition(
+                    child: const GameStartPage(),
+                    type: PageTransitionType.leftToRight,
+                    duration: const Duration(milliseconds: 800),
+                    reverseDuration: const Duration(milliseconds: 800)))),
+          ),
         ],
       ),
     );

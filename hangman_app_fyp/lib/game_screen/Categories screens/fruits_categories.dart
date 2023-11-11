@@ -354,7 +354,7 @@ class _FruitsCategoryState extends State<FruitsCategory> {
 // Appbar
 
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           backgroundColor: const Color.fromARGB(255, 19, 19, 19),
           title: Center(
             child: Text(
@@ -502,7 +502,7 @@ class _FruitsCategoryState extends State<FruitsCategory> {
 
               Text(hangmanWord(),
                   style: gameTextStyle(
-                      40,
+                      30,
                       const Color.fromARGB(255, 255, 255, 255),
                       FontWeight.bold)),
 

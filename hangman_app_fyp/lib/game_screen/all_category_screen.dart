@@ -1,10 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/food_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/fruits_categories.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/language_category.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/sports_category.dart';
 import 'package:page_transition/page_transition.dart';
 
 class AllCAtegories extends StatefulWidget {
@@ -21,6 +17,10 @@ List<String> allCategories = [
   "LANGUAGE",
   "FOODS"
 ];
+Color sportsTextColor = const Color.fromARGB(255, 0, 0, 0);
+Color fruitsTextColor = const Color.fromARGB(255, 0, 0, 0);
+Color languageTextColor = const Color.fromARGB(255, 0, 0, 0);
+Color foodsTextColor = const Color.fromARGB(255, 0, 0, 0);
 
 class _AllCAtegoriesState extends State<AllCAtegories> {
   @override
@@ -28,259 +28,313 @@ class _AllCAtegoriesState extends State<AllCAtegories> {
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           backgroundColor: const Color.fromARGB(255, 21, 26, 74),
         ),
         backgroundColor: const Color.fromARGB(255, 21, 26, 74),
         // ignore: unnecessary_new
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 140,
-                  backgroundColor: Colors.transparent,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(180),
-                        border: Border.all(width: 2, color: Colors.white)),
-                    child: const CircleAvatar(
-                      radius: 140,
-                      backgroundColor: Colors.transparent,
-                      child: Image(
-                        image: AssetImage("images/catgif.gif"),
-                        width: 390,
-                        height: 250,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 35,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 27,
-                  ),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      PageTransition(
-                        child: const AllCAtegories(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 600),
-                        reverseDuration: const Duration(milliseconds: 600),
-                      ),
-                    ),
-                    child: const Card(
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.move_down_rounded,
-                          color: Colors.black,
-                          size: 45,
-                        ),
-                        title: Text(
-                          "WORDS CATEGORIES",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 28,
-                          ),
-                        ),
-                        subtitle: Text(
-                          "SELECT BELOW CATEGORIES",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 18,
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 70,
+                        backgroundColor: Colors.transparent,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(180),
+                              border:
+                                  Border.all(width: 2, color: Colors.white)),
+                          child: const CircleAvatar(
+                            radius: 100,
+                            backgroundColor: Colors.transparent,
+                            child: Image(
+                              image: AssetImage("images/catgif.gif"),
+                              width: 140,
+                              height: 100,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Divider(
-                  indent: 33,
-                  endIndent: 33,
-                  color: Color.fromARGB(255, 130, 125, 125),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 27,
-                  ),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      PageTransition(
-                        child: const SportCategory(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 600),
-                        reverseDuration: const Duration(milliseconds: 600),
+                      const SizedBox(
+                        height: 35,
                       ),
-                    ),
-                    child: Card(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.play_circle_sharp,
-                          color: Colors.black,
-                          size: 45,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 27,
                         ),
-                        title: Text(
-                          allCategories[0],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 28,
-                          ),
-                        ),
-                        subtitle: const Text(
-                          "TAP TO PLAY",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 18,
+                        child: Card(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.gamepad,
+                              color: Colors.black,
+                              size: 45,
+                            ),
+                            title: Center(
+                              child: Text(
+                                "WORD CATEGORIES",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            subtitle: Center(
+                              child: Text(
+                                "SELECT CATEGORIES",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 27,
-                  ),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      PageTransition(
-                        child: const FruitsCategory(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 600),
-                        reverseDuration: const Duration(milliseconds: 600),
+                      const SizedBox(
+                        height: 10,
                       ),
-                    ),
-                    child: Card(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.play_circle_sharp,
-                          color: Colors.black,
-                          size: 45,
-                        ),
-                        title: Text(
-                          allCategories[1],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 28,
-                          ),
-                        ),
-                        subtitle: const Text(
-                          "TAP TO PLAY",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 18,
-                          ),
-                        ),
+                      const Divider(
+                        indent: 33,
+                        endIndent: 33,
+                        color: Color.fromARGB(255, 130, 125, 125),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 27,
-                  ),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      PageTransition(
-                        child: const LanguageCategory(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 600),
-                        reverseDuration: const Duration(milliseconds: 600),
+                      const SizedBox(
+                        height: 5,
                       ),
-                    ),
-                    child: Card(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.play_circle_sharp,
-                          color: Colors.black,
-                          size: 45,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
                         ),
-                        title: Text(
-                          allCategories[2],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 28,
-                          ),
-                        ),
-                        subtitle: const Text(
-                          "TAP TO PLAY",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 18,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).push(
+                              PageTransition(
+                                child: const AllCAtegories(),
+                                type: PageTransitionType.rightToLeft,
+                                duration: const Duration(milliseconds: 600),
+                                reverseDuration:
+                                    const Duration(milliseconds: 600),
+                              ),
+                            ),
+                            onHover: (bool isHovered) {
+                              // Update the text color when hovered
+                              setState(() {
+                                sportsTextColor = isHovered
+                                    ? Colors.red
+                                    : const Color.fromARGB(255, 0, 0, 0);
+                              });
+                            },
+                            child: Card(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.play_circle_sharp,
+                                  color: Colors.black,
+                                  size: 45,
+                                ),
+                                title: Center(
+                                  child: Text(
+                                    allCategories[0],
+                                    style: TextStyle(
+                                      color: sportsTextColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                subtitle: Center(
+                                  child: Text(
+                                    "TAP TO PLAY",
+                                    style: TextStyle(
+                                      color: sportsTextColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 27,
-                  ),
-                  child: InkWell(
-                    onTap: () => Navigator.of(context).push(
-                      PageTransition(
-                        child: const FoodCategory(),
-                        type: PageTransitionType.rightToLeft,
-                        duration: const Duration(milliseconds: 600),
-                        reverseDuration: const Duration(milliseconds: 600),
+                      const SizedBox(
+                        height: 18,
                       ),
-                    ),
-                    child: Card(
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.play_circle_sharp,
-                          color: Colors.black,
-                          size: 45,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
                         ),
-                        title: Text(
-                          allCategories[3],
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 28,
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).push(
+                              PageTransition(
+                                child: const AllCAtegories(),
+                                type: PageTransitionType.rightToLeft,
+                                duration: const Duration(milliseconds: 600),
+                                reverseDuration:
+                                    const Duration(milliseconds: 600),
+                              ),
+                            ),
+                            onHover: (bool isHovered) {
+                              // Update the text color when hovered
+                              setState(() {
+                                fruitsTextColor = isHovered
+                                    ? Colors.red
+                                    : const Color.fromARGB(255, 0, 0, 0);
+                              });
+                            },
+                            child: Card(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.play_circle_sharp,
+                                  color: Colors.black,
+                                  size: 45,
+                                ),
+                                title: Center(
+                                  child: Text(
+                                    allCategories[1],
+                                    style: TextStyle(
+                                      color: fruitsTextColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                subtitle: Center(
+                                  child: Text(
+                                    "TAP TO PLAY",
+                                    style: TextStyle(
+                                      color: fruitsTextColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                        subtitle: const Text(
-                          "TAP TO PLAY",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 18,
+                      ),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
+                        ),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).push(
+                              PageTransition(
+                                child: const AllCAtegories(),
+                                type: PageTransitionType.rightToLeft,
+                                duration: const Duration(milliseconds: 600),
+                                reverseDuration:
+                                    const Duration(milliseconds: 600),
+                              ),
+                            ),
+                            onHover: (bool isHovered) {
+                              // Update the text color when hovered
+                              setState(() {
+                                languageTextColor = isHovered
+                                    ? Colors.red
+                                    : const Color.fromARGB(255, 0, 0, 0);
+                              });
+                            },
+                            child: Card(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.play_circle_sharp,
+                                  color: Colors.black,
+                                  size: 45,
+                                ),
+                                title: Center(
+                                  child: Text(
+                                    allCategories[2],
+                                    style: TextStyle(
+                                      color: languageTextColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                subtitle: Center(
+                                  child: Text(
+                                    "TAP TO PLAY",
+                                    style: TextStyle(
+                                      color: languageTextColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 18,
-                ),
-              ],
-            ),
-          ),
-        ));
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
+                        ),
+                        child: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: InkWell(
+                            onTap: () => Navigator.of(context).push(
+                              PageTransition(
+                                child: const AllCAtegories(),
+                                type: PageTransitionType.rightToLeft,
+                                duration: const Duration(milliseconds: 600),
+                                reverseDuration:
+                                    const Duration(milliseconds: 600),
+                              ),
+                            ),
+                            onHover: (bool isHovered) {
+                              // Update the text color when hovered
+                              setState(() {
+                                foodsTextColor = isHovered
+                                    ? Colors.red
+                                    : const Color.fromARGB(255, 0, 0, 0);
+                              });
+                            },
+                            child: Card(
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.play_circle_sharp,
+                                  color: Colors.black,
+                                  size: 45,
+                                ),
+                                title: Center(
+                                  child: Text(
+                                    allCategories[3],
+                                    style: TextStyle(
+                                      color: foodsTextColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                subtitle: Center(
+                                  child: Text(
+                                    "TAP TO PLAY",
+                                    style: TextStyle(
+                                      color: foodsTextColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]))));
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:flutter/material.dart';
 import 'package:hangman_app_fyp/initials%20Screens/modes.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -25,19 +25,19 @@ class _GameStartPageState extends State<GameStartPage> {
         child: Column(
           children: [
             const Image(
-                height: 480,
+                height: 310,
                 width: 450,
                 image: AssetImage(
                   "images/gallow.png",
                 )),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             const Text(
               "HANGMAN",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 48,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold),
             ),
             AvatarGlow(
@@ -54,18 +54,11 @@ class _GameStartPageState extends State<GameStartPage> {
                     type: PageTransitionType.rightToLeft,
                     duration: const Duration(milliseconds: 800),
                     reverseDuration: const Duration(milliseconds: 800))),
-                // {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => const GameScreen())
-                //           );
-                // },
                 elevation: 20.0,
                 shape: const CircleBorder(),
                 child: Container(
-                  width: 130.0,
-                  height: 130.0,
+                  width: 110.0,
+                  height: 110.0,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                       color: Colors.white,

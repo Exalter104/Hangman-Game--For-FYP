@@ -354,7 +354,7 @@ class _SportCategoryState extends State<SportCategory> {
 // Appbar
 
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           backgroundColor: const Color.fromARGB(255, 19, 19, 19),
           title: Center(
             child: Text(
@@ -415,7 +415,7 @@ class _SportCategoryState extends State<SportCategory> {
                       child: Text(
                         allCategories[0],
                         style: gameTextStyle(
-                            20,
+                            15,
                             const Color.fromARGB(255, 255, 255, 255),
                             FontWeight.bold),
                       )),
@@ -502,7 +502,7 @@ class _SportCategoryState extends State<SportCategory> {
 
               Text(hangmanWord(),
                   style: gameTextStyle(
-                      40,
+                      30,
                       const Color.fromARGB(255, 255, 255, 255),
                       FontWeight.bold)),
 

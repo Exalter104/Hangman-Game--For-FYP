@@ -355,7 +355,7 @@ class _LanguageCategoryState extends State<LanguageCategory> {
 // Appbar
 
         appBar: AppBar(
-          automaticallyImplyLeading: false,
+          automaticallyImplyLeading: true,
           backgroundColor: const Color.fromARGB(255, 19, 19, 19),
           title: Center(
             child: Text(
@@ -388,7 +388,7 @@ class _LanguageCategoryState extends State<LanguageCategory> {
                   child: Text(
                     "Score : $score ",
                     style: gameTextStyle(
-                        20,
+                        15,
                         const Color.fromARGB(255, 255, 255, 255),
                         FontWeight.bold),
                   ),
@@ -416,7 +416,7 @@ class _LanguageCategoryState extends State<LanguageCategory> {
                       child: Text(
                         allCategories[2],
                         style: gameTextStyle(
-                            20,
+                            15,
                             const Color.fromARGB(255, 255, 255, 255),
                             FontWeight.bold),
                       )),
@@ -503,7 +503,7 @@ class _LanguageCategoryState extends State<LanguageCategory> {
 
               Text(hangmanWord(),
                   style: gameTextStyle(
-                      40,
+                      30,
                       const Color.fromARGB(255, 255, 255, 255),
                       FontWeight.bold)),
 

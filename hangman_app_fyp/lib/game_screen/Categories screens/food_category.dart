@@ -326,22 +326,22 @@ class _FoodCategoryState extends State<FoodCategory> {
     if (isWin) {
       openDiloge("You Win");
     }
-    if (isWin) {
-      setState(() {
-        if (score > 80) {
-          levels++;
-        } else if (score > 130) {
-          levels++;
-        } else if (score > 190) {
-          levels++;
-        }
-      });
-    }
-    if (levels > 3) {
-      openDiloge(
-        "Levels is Finshed\n Good Luck for 60% ",
-      );
-    }
+    // if (isWin) {
+    //   setState(() {
+    //     if (score > 80) {
+    //       levels++;
+    //     } else if (score > 130) {
+    //       levels++;
+    //     } else if (score > 190) {
+    //       levels++;
+    //     }
+    //   });
+    // }
+    // if (levels > 3) {
+    //   openDiloge(
+    //     "Levels is Finshed\n Good Luck for 60% ",
+    //   );
+    // }
   }
 
   bool isButtonActive = true;
@@ -353,8 +353,8 @@ class _FoodCategoryState extends State<FoodCategory> {
 // Appbar
 
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromARGB(255, 19, 19, 19),
+          backgroundColor: const Color.fromARGB(255, 118, 118, 118),
+          automaticallyImplyLeading: true,
           title: Center(
             child: Text(
               "Hangman Game ",
@@ -363,197 +363,194 @@ class _FoodCategoryState extends State<FoodCategory> {
           ),
         ),
         body: SingleChildScrollView(
-            physics: const ScrollPhysics(),
-            child: Column(children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        width: 1,
-                      ),
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: const BorderRadius.only(
-                          bottomRight: Radius.circular(40.0),
-                          topRight: Radius.circular(40.0))),
-                  margin: const EdgeInsets.only(top: 30),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width / 4.0,
-                  height: 50,
-
-// Score Module
-
-                  child: Text(
-                    "Score : $score ",
-                    style: gameTextStyle(
-                        20,
-                        const Color.fromARGB(255, 255, 255, 255),
-                        FontWeight.bold),
-                  ),
-                ),
-                // const Text('data'),
-                Container(
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: const Color.fromARGB(255, 255, 255, 255),
-                        width: 1,
-                      ),
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(40.0),
-                          topLeft: Radius.circular(40.0))),
-                  margin: const EdgeInsets.only(top: 30),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width / 4.0,
-                  height: 50,
-
-// Hints Module
-
-                  child: InkWell(
-                      onTap: () {},
-                      child: Text(
-                        allCategories[3],
-                        style: gameTextStyle(
-                            20,
-                            const Color.fromARGB(255, 255, 255, 255),
-                            FontWeight.bold),
-                      )),
-                ),
-              ]),
-              const Row(
-                children: [],
-              ),
+          physics: const ScrollPhysics(),
+          child: Column(children: [
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                       color: const Color.fromARGB(255, 255, 255, 255),
                       width: 1,
                     ),
-                    color: const Color.fromARGB(255, 0, 0, 0)),
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    borderRadius: const BorderRadius.only(
+                        bottomRight: Radius.circular(40.0),
+                        topRight: Radius.circular(40.0))),
                 margin: const EdgeInsets.only(top: 30),
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width / 2.5,
-                height: 50,
+                width: MediaQuery.of(context).size.width / 4.0,
+                height: 30,
 
-// try lift Module
+                // Score Module
 
                 child: Text(
-                  "${6 - status} Try Lift",
+                  "Score : $score ",
                   style: gameTextStyle(
-                      20,
+                      15,
                       const Color.fromARGB(255, 255, 255, 255),
                       FontWeight.bold),
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              Image(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  fit: BoxFit.cover,
-                  height: 180,
-                  width: 180,
-                  image: AssetImage(gameImages[status])),
-              const SizedBox(
-                height: 30,
-              ),
+              // const Text('data'),
               Container(
-                alignment: Alignment.center,
-                child: Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            width: 1,
-                          ),
-                          color: const Color.fromARGB(255, 0, 0, 0)),
-                      margin: const EdgeInsets.only(top: 30),
-                      alignment: Alignment.center,
-                      width: MediaQuery.of(context).size.width / 2.1,
-                      height: 50,
-
-// Levels Module
-
-                      child: Text(
-                        "Levels $levels  ",
-                        // "HINT : ANIMAL CATEGORY",
-                        style: gameTextStyle(
-                            20,
-                            const Color.fromARGB(255, 255, 255, 255),
-                            FontWeight.bold),
-                      ),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      width: 1,
                     ),
-
-                    // Container(
-
-                    // )
-                  ],
-                ),
-              ),
-              const SizedBox(
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(40.0),
+                        topLeft: Radius.circular(40.0))),
+                margin: const EdgeInsets.only(top: 30),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width / 4.0,
                 height: 30,
+
+                // Hints Module
+
+                child: InkWell(
+                    onTap: () {},
+                    child: Text(
+                      allCategories[3],
+                      style: gameTextStyle(
+                          15,
+                          const Color.fromARGB(255, 255, 255, 255),
+                          FontWeight.bold),
+                    )),
               ),
+            ]),
+            const Row(
+              children: [],
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    width: 1,
+                  ),
+                  color: const Color.fromARGB(255, 0, 0, 0)),
+              margin: const EdgeInsets.only(top: 30),
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width / 2.5,
+              height: 50,
 
-// Core Display Logic Module
+              // try lift Module
 
-              Text(hangmanWord(),
-                  style: gameTextStyle(
-                      40,
-                      const Color.fromARGB(255, 255, 255, 255),
-                      FontWeight.bold)),
-
-              const SizedBox(
-                height: 30,
+              child: Text(
+                "${6 - status} Try Lift",
+                style: gameTextStyle(16,
+                    const Color.fromARGB(255, 255, 255, 255), FontWeight.bold),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.count(
-                  crossAxisCount: 7,
-                  shrinkWrap: true,
-
-                  physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: 1,
-
-// keyboard maping Module
-
-                  children: letters.map((alphabits) {
-                    return Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            width: 2,
-                          ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Image(
+                color: const Color.fromARGB(255, 255, 255, 255),
+                fit: BoxFit.cover,
+                height: 150,
+                width: 150,
+                image: AssetImage(gameImages[status])),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          width: 1,
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 6),
-                          child: InkWell(
-                            onTap: () {
-                              checkKeyPress(alphabits);
-                            },
-                            child: Center(
-                              child: Text(
-                                alphabits,
-                                style: gameTextStyle(
-                                  20,
-                                  const Color.fromARGB(255, 255, 255, 255),
-                                  FontWeight.bold,
-                                ),
+                        color: const Color.fromARGB(255, 0, 0, 0)),
+                    margin: const EdgeInsets.only(top: 30),
+                    alignment: Alignment.center,
+                    width: MediaQuery.of(context).size.width / 2.1,
+                    height: 45,
+
+                    // Levels Module
+
+                    child: Text(
+                      "Levels $levels  ",
+                      // "HINT : ANIMAL CATEGORY",
+                      style: gameTextStyle(
+                          16,
+                          const Color.fromARGB(255, 255, 255, 255),
+                          FontWeight.bold),
+                    ),
+                  ),
+
+                  // Container(
+
+                  // )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+
+            // Core Display Logic Module
+
+            Text(hangmanWord(),
+                style: gameTextStyle(30,
+                    const Color.fromARGB(255, 255, 255, 255), FontWeight.bold)),
+
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.count(
+                crossAxisCount: 7,
+                shrinkWrap: true,
+
+                physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: 1,
+
+                // keyboard maping Module
+
+                children: letters.map((alphabits) {
+                  return Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: const Color.fromARGB(255, 255, 255, 255),
+                          width: 2,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6),
+                        child: InkWell(
+                          onTap: () {
+                            checkKeyPress(alphabits);
+                          },
+                          child: Center(
+                            child: Text(
+                              alphabits,
+                              style: gameTextStyle(
+                                20,
+                                const Color.fromARGB(255, 255, 255, 255),
+                                FontWeight.bold,
                               ),
                             ),
                           ),
                         ),
                       ),
-                    );
-                  }).toList(),
-                ),
-              )
-            ])));
+                    ),
+                  );
+                }).toList(),
+              ),
+            )
+          ]),
+        ));
   }
 }

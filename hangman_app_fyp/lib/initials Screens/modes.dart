@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman_app_fyp/game_screen/Categories%20screens/countries_category.dart';
+import 'package:hangman_app_fyp/game_screen/Categories%20screens/fruits_categories.dart';
 import 'package:hangman_app_fyp/game_screen/all_category_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -12,10 +12,15 @@ class Modes extends StatefulWidget {
 
 class _ModesState extends State<Modes> {
   String? selectedValue;
-
+  Color classicModeTextColor = const Color.fromARGB(255, 0, 0, 0);
+  Color proModeTextColor = const Color.fromARGB(255, 0, 0, 0);
+  Color easyModeTextColor = const Color.fromARGB(255, 0, 0, 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 21, 26, 74),
+      ),
       backgroundColor: const Color.fromARGB(255, 21, 26, 74),
       body: SafeArea(
         child: Column(
@@ -30,7 +35,7 @@ class _ModesState extends State<Modes> {
                 ),
               ),
               child: const Image(
-                height: 400,
+                height: 270,
                 width: 400,
                 image: AssetImage("images/gallow.png"),
               ),
@@ -46,20 +51,24 @@ class _ModesState extends State<Modes> {
                     color: Colors.black,
                     size: 45,
                   ),
-                  title: Text(
-                    "HANGMAN",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
+                  title: Center(
+                    child: Text(
+                      "HANGMAN",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  subtitle: Text(
-                    "SELECT MODE",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 0, 0, 0),
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                  subtitle: Center(
+                    child: Text(
+                      "SELECT MODE",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -89,35 +98,50 @@ class _ModesState extends State<Modes> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 27,
                     ),
-                    child: InkWell(
-                      onTap: () => Navigator.of(context).push(
-                        PageTransition(
-                          child: const CountryCategory(),
-                          type: PageTransitionType.rightToLeft,
-                          duration: const Duration(milliseconds: 600),
-                          reverseDuration: const Duration(milliseconds: 600),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: InkWell(
+                        onTap: () => Navigator.of(context).push(
+                          PageTransition(
+                            child: const FruitsCategory(),
+                            type: PageTransitionType.rightToLeft,
+                            duration: const Duration(milliseconds: 600),
+                            reverseDuration: const Duration(milliseconds: 600),
+                          ),
                         ),
-                      ),
-                      child: const Card(
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.gamepad,
-                            color: Colors.black,
-                            size: 45,
-                          ),
-                          title: Text(
-                            "EASY MODE",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
+                        onHover: (bool isHovered) {
+                          // Update the text color when hovered
+                          setState(() {
+                            easyModeTextColor = isHovered
+                                ? Colors.red
+                                : const Color.fromARGB(255, 0, 0, 0);
+                          });
+                        },
+                        child: Card(
+                          child: ListTile(
+                            leading: const Icon(
+                              Icons.gamepad,
+                              color: Colors.black,
+                              size: 45,
                             ),
-                          ),
-                          subtitle: Text(
-                            "TAP TO PLAY",
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 0, 0, 0),
-                              fontSize: 18,
+                            title: Center(
+                              child: Text(
+                                "EASY MODE",
+                                style: TextStyle(
+                                  color: easyModeTextColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            subtitle: Center(
+                              child: Text(
+                                "TAP TO PLAY",
+                                style: TextStyle(
+                                  color: easyModeTextColor,
+                                  fontSize: 16,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -129,78 +153,113 @@ class _ModesState extends State<Modes> {
             ),
             const SizedBox(height: 12),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 27,
-              ),
-              child: InkWell(
-                onTap: () => Navigator.of(context).push(
-                  PageTransition(
-                    child: const AllCAtegories(),
-                    type: PageTransitionType.rightToLeft,
-                    duration: const Duration(milliseconds: 600),
-                    reverseDuration: const Duration(milliseconds: 600),
-                  ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 27,
                 ),
-                child: const Card(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.gamepad,
-                      color: Colors.black,
-                      size: 45,
-                    ),
-                    title: Text(
-                      "CLASSIC MODE",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 28,
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: InkWell(
+                    onTap: () => Navigator.of(context).push(
+                      PageTransition(
+                        child: const AllCAtegories(),
+                        type: PageTransitionType.rightToLeft,
+                        duration: const Duration(milliseconds: 600),
+                        reverseDuration: const Duration(milliseconds: 600),
                       ),
                     ),
-                    subtitle: Text(
-                      "TAP TO PLAY",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 18,
+                    onHover: (bool isHovered) {
+                      // Update the text color for "CLASSIC MODE" when hovered
+                      setState(() {
+                        classicModeTextColor = isHovered
+                            ? Colors.red
+                            : const Color.fromARGB(255, 0, 0, 0);
+                      });
+                    },
+                    child: Card(
+                      child: ListTile(
+                        leading: const Icon(
+                          Icons.gamepad,
+                          color: Colors.black,
+                          size: 45,
+                        ),
+                        title: Center(
+                          child: Text(
+                            "CLASSIC MODE",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: classicModeTextColor,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                        subtitle: Center(
+                          child: Text(
+                            "TAP TO PLAY",
+                            style: TextStyle(
+                              color: classicModeTextColor,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-            ),
+                )),
             const SizedBox(height: 15),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 27,
               ),
-              child: InkWell(
-                onTap: () => Navigator.of(context).push(
-                  PageTransition(
-                    child: const CountryCategory(),
-                    type: PageTransitionType.rightToLeft,
-                    duration: const Duration(milliseconds: 600),
-                    reverseDuration: const Duration(milliseconds: 600),
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    PageTransition(
+                      child: const Modes(),
+                      type: PageTransitionType.rightToLeft,
+                      duration: const Duration(milliseconds: 600),
+                      reverseDuration: const Duration(milliseconds: 600),
+                    ),
                   ),
-                ),
-                child: const Card(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.gamepad,
-                      color: Colors.black,
-                      size: 45,
-                    ),
-                    title: Text(
-                      "PRO MODE",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 28,
+                  onHover: (bool isHovered) {
+                    // Change the color when hovered
+                    // Example: You can use a different color when hovered
+                    // Replace the color with your desired color
+                    // For example, Colors.red when hovered, Colors.black when not hovered
+                    // You can customize this based on your design preferences
+                    setState(() {
+                      proModeTextColor = isHovered
+                          ? Colors.red
+                          : const Color.fromARGB(255, 0, 0, 0);
+                    });
+                  },
+                  child: Card(
+                    child: ListTile(
+                      leading: const Icon(
+                        Icons.gamepad,
+                        color: Colors.black,
+                        size: 45,
                       ),
-                    ),
-                    subtitle: Text(
-                      "TAP TO PLAY",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 0, 0, 0),
-                        fontSize: 18,
+                      title: Center(
+                        child: Text(
+                          "PRO MODE",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color:
+                                proModeTextColor, // Use the textColor variable here
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                      subtitle: Center(
+                        child: Text(
+                          "TAP TO PLAY",
+                          style: TextStyle(
+                            color:
+                                proModeTextColor, // Use the textColor variable here
+                            fontSize: 16,
+                          ),
+                        ),
                       ),
                     ),
                   ),
